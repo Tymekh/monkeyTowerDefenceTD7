@@ -11,18 +11,19 @@ namespace monkeyTowerDefenceTD7
 {
     internal class Balony
     {
-        public static void CreateBalon(int id)
+        public void CreateBalon(int id, double x, double y)
         {
-        //Rectangle Tymczasowy = new Rectangle
-        //{
-        //    Width = 10,
-        //    Height = 10,
-        //    Fill = Brushes.Black
-        //};
-        //Canvas.SetLeft(Tymczasowy, 100);
-        //Canvas.SetTop(Tymczasowy, 100);
-        //MainWindow.MyGame.Children.Add(Tymczasowy);
-        Bronie.StworzBron(id);
+            Rectangle Balon = new Rectangle
+            {
+                Width = 50,
+                Height = 50,
+                Fill = Brushes.Red
+            };
+            Canvas.SetLeft(Balon, x - Balon.Width/2);
+            Canvas.SetTop(Balon, y - Balon.Width/2);
+            MainWindow.MyGame.Children.Add(Balon);
+            Bronie bron = new Bronie();
+            bron.StworzBron(id, x, y);
         }
         
     }

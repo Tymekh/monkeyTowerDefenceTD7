@@ -11,15 +11,15 @@ namespace monkeyTowerDefenceTD7
 {
     internal class Bronie
     {
-        public static void StworzBron(int id)
+        public void StworzBron(int id, double x, double y)
         {
             switch (id)
             {
                 case 0:
-                    Luk();
+                    Luk(x,y);
                     return;
                 case 1:
-                    Wlocznia();
+                    Wlocznia(x,y);
                     return;
                 case 2:
                     return;
@@ -37,7 +37,7 @@ namespace monkeyTowerDefenceTD7
                     return;
             }
         }
-        private static void Luk()
+        private void Luk(double x, double y)
         {
             Rectangle Tymczasowy = new Rectangle
             {
@@ -45,11 +45,11 @@ namespace monkeyTowerDefenceTD7
                 Height = 10,
                 Fill = Brushes.Black
             };
-            Canvas.SetLeft(Tymczasowy, 100);
-            Canvas.SetTop(Tymczasowy, 100);
+            Canvas.SetLeft(Tymczasowy, x);
+            Canvas.SetTop(Tymczasowy, y);
             MainWindow.MyGame.Children.Add(Tymczasowy);
         }
-        private static void Wlocznia()
+        private void Wlocznia(double x, double y)
         {
             Rectangle Tymczasowy = new Rectangle
             {
