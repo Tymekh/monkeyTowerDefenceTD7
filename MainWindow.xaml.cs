@@ -16,9 +16,13 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Canvas MyGame;
         public MainWindow()
         {
             InitializeComponent();
+
+            MyGame = MyCanvas;
+            Balony.kwadrat();
         }
     }
 }
