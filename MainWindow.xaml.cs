@@ -22,7 +22,7 @@ namespace monkeyTowerDefenceTD7
             InitializeComponent();
 
             MyGame = MyCanvas;
-            Balony.kwadrat();
+            Balony.CreateBalon(1);
         }
     }
 }
