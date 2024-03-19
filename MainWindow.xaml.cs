@@ -23,6 +23,8 @@ namespace monkeyTowerDefenceTD7
 
             MyGame = MyCanvas;
             Balony.CreateBalon(1);
+
+            //jhsbd,av
         }
     }
 }
