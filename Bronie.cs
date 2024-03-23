@@ -16,7 +16,7 @@ namespace monkeyTowerDefenceTD7
     {
         private DispatcherTimer WeaponTimer = new DispatcherTimer();
         private DispatcherTimer RotateTimer = new DispatcherTimer();
-        Rectangle Bron;
+        Rectangle bron;
         public static double Distance;
 
         public Bronie(){
@@ -33,13 +33,13 @@ namespace monkeyTowerDefenceTD7
 
         private void RotateTimer_Tick(object? sender, EventArgs e)
         {
-            if (Bron != null)
+            if (bron != null)
             {
                 //double Distance = 100;
                 double index;
                 for (int i = 0; i < Malpy.MalpaList.Count; i++)
                 {
-                    double dst = Math.Sqrt(Math.Pow(Canvas.GetLeft(Bron) - Canvas.GetLeft(Malpy.MalpaList[i]), 2) + Math.Pow(Canvas.GetTop(Bron) - Canvas.GetTop(Malpy.MalpaList[i]), 2));
+                    double dst = Math.Sqrt(Math.Pow(Canvas.GetLeft(bron) - Canvas.GetLeft(Malpy.MalpaList[i]), 2) + Math.Pow(Canvas.GetTop(bron) - Canvas.GetTop(Malpy.MalpaList[i]), 2));
                     if (dst < Distance)
                     {
                         Distance = dst;
@@ -66,9 +66,11 @@ namespace monkeyTowerDefenceTD7
                     break;
                 case 2:
                     // Brazowy balon
+                    image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     break;
                 case 3:
                     // Czarny balon
+                    image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     break;
                 case 4:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/petarda.png"));
@@ -86,6 +88,7 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetLeft(Bron, x - Bron.Width / 2);
             Canvas.SetTop(Bron, y - Bron.Height / 2);
             MainWindow.MyGame.Children.Add(Bron);
+            bron = Bron;
         }
     }
 }

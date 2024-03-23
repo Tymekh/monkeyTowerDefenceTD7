@@ -48,12 +48,6 @@ namespace monkeyTowerDefenceTD7
                         image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/ZielonyBalon.png"));
                         break;
                     }
-                // Mozliwy bialy balon
-                //case 6:
-                //    {
-                //        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/CzerwonyBalon.png"));
-                //        break;
-                //    }
                 default: { break; }
 
             }
