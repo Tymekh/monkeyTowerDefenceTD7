@@ -20,9 +20,9 @@ namespace monkeyTowerDefenceTD7
             };
             Rectangle Malpa = new Rectangle
             {
-                Width = 100,
-                Height = 100,
-                Fill = image
+                Width = 80,
+                Height = 80,
+                Fill = Brushes.RosyBrown
             };
             Canvas.SetLeft(Malpa, x - Malpa.Width / 2);
             Canvas.SetTop(Malpa, y - Malpa.Width / 2);

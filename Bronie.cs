@@ -7,11 +7,14 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace monkeyTowerDefenceTD7
 {
     internal class Bronie
     {
+        private DispatcherTimer WeaponTimer = new DispatcherTimer();
+        
         public void StworzBron(int id, double x, double y)
         {
             switch (id)
@@ -42,57 +45,57 @@ namespace monkeyTowerDefenceTD7
         {
             ImageBrush image = new ImageBrush { };
             image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Czerwony/luke.png"));
-            Rectangle Tymczasowy = new Rectangle
+            Rectangle Bron = new Rectangle
             {
                 Width = 100,
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Tymczasowy, x);
-            Canvas.SetTop(Tymczasowy, y);
-            MainWindow.MyGame.Children.Add(Tymczasowy);
+            Canvas.SetLeft(Bron, x - Bron.Width / 2);
+            Canvas.SetTop(Bron, y - Bron.Height / 2);
+            MainWindow.MyGame.Children.Add(Bron);
         }
         private void Wlocznia(double x, double y)
         {
             ImageBrush image = new ImageBrush { };
             image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Niebieski/dzida.png"));
-            Rectangle Tymczasowy = new Rectangle
+            Rectangle Bron = new Rectangle
             {
                 Width = 100,
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Tymczasowy, x);
-            Canvas.SetTop(Tymczasowy, y);
-            MainWindow.MyGame.Children.Add(Tymczasowy);
+            Canvas.SetLeft(Bron, x - Bron.Width / 2);
+            Canvas.SetTop(Bron, y - Bron.Height / 2);
+            MainWindow.MyGame.Children.Add(Bron);
         }
         private void Dynamit(double x, double y)
         {
             ImageBrush image = new ImageBrush { };
             image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Zolty/petarda.png"));
-            Rectangle Tymczasowy = new Rectangle
+            Rectangle Bron = new Rectangle
             {
                 Width = 100,
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Tymczasowy, x);
-            Canvas.SetTop(Tymczasowy, y);
-            MainWindow.MyGame.Children.Add(Tymczasowy);
+            Canvas.SetLeft(Bron, x - Bron.Width / 2);
+            Canvas.SetTop(Bron, y - Bron.Height / 2);
+            MainWindow.MyGame.Children.Add(Bron);
         }
         private void Rurka(double x, double y)
         {
             ImageBrush image = new ImageBrush { };
             image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Zielony/dmuh.png"));
-            Rectangle Tymczasowy = new Rectangle
+            Rectangle Bron = new Rectangle
             {
                 Width = 100,
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Tymczasowy, x);
-            Canvas.SetTop(Tymczasowy, y);
-            MainWindow.MyGame.Children.Add(Tymczasowy);
+            Canvas.SetLeft(Bron, x - Bron.Width / 2);
+            Canvas.SetTop(Bron, y - Bron.Height / 2);
+            MainWindow.MyGame.Children.Add(Bron);
         }
     }
 }
