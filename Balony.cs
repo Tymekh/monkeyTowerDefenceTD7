@@ -20,38 +20,38 @@ namespace monkeyTowerDefenceTD7
             {
                 case 0:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Czerwony/CzerwonyBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/CzerwonyBalon.png"));
                         break;
                     }
                 case 1:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Niebieski/NiebieskiBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/NiebieskiBalon.png"));
                         break;
                     }
                 case 2:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Brazowy/BrazowyBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Brazowy/BrazowyBalon.png"));
                         break;
                     }
                 case 3:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Czarny/CzarnyBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czarny/CzarnyBalon.png"));
                         break;
                     }
                 case 4:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Zolty/ZoltyBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/ZoltyBalon.png"));
                         break;
                     }
                 case 5:
                     {
-                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Zielony/ZielonyBalon.png"));
+                        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/ZielonyBalon.png"));
                         break;
                     }
                 // Mozliwy bialy balon
                 //case 6:
                 //    {
-                //        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Czerwony/CzerwonyBalon.png"));
+                //        image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/CzerwonyBalon.png"));
                 //        break;
                 //    }
                 default: { break; }

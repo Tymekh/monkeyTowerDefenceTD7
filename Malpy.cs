@@ -16,13 +16,13 @@ namespace monkeyTowerDefenceTD7
         public void CreateMalpa(double x, double y)
         {
             ImageBrush image = new ImageBrush {
-                ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Zolty/ZoltyBalon.png"))
+                ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"))
             };
             Rectangle Malpa = new Rectangle
             {
                 Width = 80,
                 Height = 80,
-                Fill = Brushes.RosyBrown
+                Fill = image
             };
             Canvas.SetLeft(Malpa, x - Malpa.Width / 2);
             Canvas.SetTop(Malpa, y - Malpa.Width / 2);

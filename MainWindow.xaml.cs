@@ -24,8 +24,9 @@ namespace monkeyTowerDefenceTD7
             InitializeComponent();
             MyCanvas.Focus();
             MyGame = MyCanvas;
+            TimerStart();
         }
-        private void Timer()
+        private void TimerStart()
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -35,14 +36,14 @@ namespace monkeyTowerDefenceTD7
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            tekst.Text = Bronie.Distance.ToString();
         }
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
             Random rand = new Random();
             Point position = e.GetPosition(MyGame);
             Balony balony = new Balony();
-            balony.CreateBalon(rand.Next(0,7), position.X, position.Y);
+            balony.CreateBalon(rand.Next(0,6), position.X, position.Y);
         }
 
         private void RightClick(object sender, MouseButtonEventArgs e)

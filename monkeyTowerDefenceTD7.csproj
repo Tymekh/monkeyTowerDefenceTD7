@@ -9,55 +9,115 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="img\Brazowy\bomb.png" />
-    <None Remove="img\Brazowy\BrazowyBalon.png" />
-    <None Remove="img\Czarny\CzarnyBalon.png" />
-    <None Remove="img\Czarny\klapki.jpg" />
-    <None Remove="img\Czerwony\CzerwonyBalon.png" />
-    <None Remove="img\Czerwony\luke.png" />
-    <None Remove="img\Niebieski\dzida.png" />
-    <None Remove="img\Niebieski\NiebieskiBalon.png" />
-    <None Remove="img\Zielony\dmuh.png" />
-    <None Remove="img\Zielony\ZielonyBalon.png" />
-    <None Remove="img\Zolty\petarda.png" />
-    <None Remove="img\Zolty\ZoltyBalon.png" />
+    <None Remove="img\Balony\Brazowy\bomb.png" />
+    <None Remove="img\Balony\Brazowy\BrazowyBalon.png" />
+    <None Remove="img\Balony\Czarny\CzarnyBalon.png" />
+    <None Remove="img\Balony\Czarny\klapki.jpg" />
+    <None Remove="img\Balony\Czerwony\CzerwonyBalon.png" />
+    <None Remove="img\Balony\Czerwony\luke.png" />
+    <None Remove="img\Maupy\Maupa-Matka.png" />
+    <None Remove="img\Maupy\Maupa.png" />
+    <None Remove="img\Maupy\Maupa_Albinos.png" />
+    <None Remove="img\Maupy\Maupa_Czarnuch.png" />
+    <None Remove="img\Maupy\Maupa_Dziecko.png" />
+    <None Remove="img\Maupy\Maupa_Helm.png" />
+    <None Remove="img\Maupy\Maupa_Zbroja.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant01.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant02.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant03.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant04.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant05.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant06.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant07.png" />
+    <None Remove="img\Maupy\Mutanty\Maupa_Mutant08.png" />
+    <None Remove="img\Balony\Niebieski\dzida.png" />
+    <None Remove="img\Balony\Niebieski\NiebieskiBalon.png" />
+    <None Remove="img\Balony\Zielony\dmuh.png" />
+    <None Remove="img\Balony\Zielony\ZielonyBalon.png" />
+    <None Remove="img\Balony\Zolty\petarda.png" />
+    <None Remove="img\Balony\Zolty\ZoltyBalon.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="img\Brazowy\bomb.png">
+    <Resource Include="img\Balony\Brazowy\bomb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Brazowy\BrazowyBalon.png">
+    <Resource Include="img\Balony\Brazowy\BrazowyBalon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Czarny\CzarnyBalon.png">
+    <Resource Include="img\Balony\Czarny\CzarnyBalon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Czarny\klapki.jpg">
+    <Resource Include="img\Balony\Czarny\klapki.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Czerwony\CzerwonyBalon.png">
+    <Resource Include="img\Balony\Czerwony\CzerwonyBalon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Czerwony\luke.png">
+    <Resource Include="img\Balony\Czerwony\luke.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Niebieski\dzida.png">
+    <Resource Include="img\Maupy\Maupa-Matka.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Niebieski\NiebieskiBalon.png">
+    <Resource Include="img\Maupy\Maupa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Zielony\dmuh.png">
+    <Resource Include="img\Maupy\Maupa_Albinos.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Zielony\ZielonyBalon.png">
+    <Resource Include="img\Maupy\Maupa_Czarnuch.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Zolty\petarda.png">
+    <Resource Include="img\Maupy\Maupa_Dziecko.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Zolty\ZoltyBalon.png">
+    <Resource Include="img\Maupy\Maupa_Helm.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Maupa_Zbroja.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant03.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant04.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant05.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant06.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant07.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Maupy\Mutanty\Maupa_Mutant08.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Niebieski\dzida.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Niebieski\NiebieskiBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Zielony\dmuh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Zielony\ZielonyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Zolty\petarda.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Balony\Zolty\ZoltyBalon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
