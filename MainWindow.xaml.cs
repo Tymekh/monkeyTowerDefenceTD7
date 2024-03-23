@@ -37,12 +37,20 @@ namespace monkeyTowerDefenceTD7
         {
             throw new NotImplementedException();
         }
-
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
+            Random rand = new Random();
             Point position = e.GetPosition(MyGame);
             Balony balony = new Balony();
-            balony.CreateBalon(0, position.X, position.Y);
+            balony.CreateBalon(rand.Next(0,7), position.X, position.Y);
         }
+
+        private void RightClick(object sender, MouseButtonEventArgs e)
+        {
+            Point position = e.GetPosition(MyGame);
+            Malpy malpy = new Malpy();
+            malpy.CreateMalpa(position.X, position.Y);
+        }
+
     }
 }

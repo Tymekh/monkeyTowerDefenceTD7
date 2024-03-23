@@ -9,7 +9,57 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="img\" />
+    <None Remove="img\Brazowy\bomb.png" />
+    <None Remove="img\Brazowy\BrazowyBalon.png" />
+    <None Remove="img\Czarny\CzarnyBalon.png" />
+    <None Remove="img\Czarny\klapki.jpg" />
+    <None Remove="img\Czerwony\CzerwonyBalon.png" />
+    <None Remove="img\Czerwony\luke.png" />
+    <None Remove="img\Niebieski\dzida.png" />
+    <None Remove="img\Niebieski\NiebieskiBalon.png" />
+    <None Remove="img\Zielony\dmuh.png" />
+    <None Remove="img\Zielony\ZielonyBalon.png" />
+    <None Remove="img\Zolty\petarda.png" />
+    <None Remove="img\Zolty\ZoltyBalon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\Brazowy\bomb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Brazowy\BrazowyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Czarny\CzarnyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Czarny\klapki.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Czerwony\CzerwonyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Czerwony\luke.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Niebieski\dzida.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Niebieski\NiebieskiBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Zielony\dmuh.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Zielony\ZielonyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Zolty\petarda.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Zolty\ZoltyBalon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
