@@ -30,5 +30,22 @@ namespace monkeyTowerDefenceTD7
             MainWindow.MyGame.Children.Add(Malpa);
         }
 
+        public static void MalpaNaSciezce(int id, double x, double y)
+        {
+            ImageBrush image = new ImageBrush
+            {
+                ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"))
+            };
+            Rectangle Malpa = new Rectangle
+            {
+                Width = 30,
+                Height = 30,
+                Fill = image
+            };
+            Canvas.SetLeft(Malpa, x - Malpa.Width / 2);
+            Canvas.SetTop(Malpa, y - Malpa.Width / 2);
+            MainWindow.MyGame.Children.Add(Malpa);
+        }
+
     }
 }

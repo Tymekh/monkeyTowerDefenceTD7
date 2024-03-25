@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick" Background="Cornsilk">
+        Title="monkeyTowerDefenceTD7" Height="450" Width="800">
+    <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick" KeyDown="MyCanvas_KeyDown">
+        <Canvas.Background>
+            <ImageBrush ImageSource="/img/PlanszaPlaceholder.png" />
+        </Canvas.Background>
         <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
+        <Polyline Points="10 10, 30 30, 40 100, 200 20, 200 100" Stroke="black" x:Name="Sciezka"/>
     </Canvas>
+
 </Window>
