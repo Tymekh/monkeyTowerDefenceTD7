@@ -53,11 +53,11 @@ namespace monkeyTowerDefenceTD7
             malpy.CreateMalpa(position.X, position.Y);
         }
 
-        // \/ Tymczasowe \/
-        int licznik = 0;
         private void MyCanvas_KeyDown(object sender, KeyEventArgs e)
         {
             List<Point> Punkty = new List<Point>();
+            List<int> Pozycje = Malpy.PozycjeMalp.Slice(0, Malpy.PozycjeMalp.Count);
+
             if (e.Key == Key.M)
             { 
                 Punkty.Clear();
@@ -66,9 +66,11 @@ namespace monkeyTowerDefenceTD7
                 {
                     Punkty.Add(p);
                 }
-
-                Malpy.MalpaNaSciezce(0, Punkty[licznik].X, Punkty[licznik++].Y);
-            
+                for (int i = 0; i < Malpy.MalpaList.Count; i++)
+                {
+                    Malpy.MalpaNaSciezce(i, Punkty[Pozycje[i]].X, Punkty[Pozycje[i]].Y);
+                    Malpy.PozycjeMalp[i]++;
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ namespace monkeyTowerDefenceTD7
     internal class Malpy
     {
         public static List<Rectangle> MalpaList = new List<Rectangle>();
+        public static List<int> PozycjeMalp = new();
         public void CreateMalpa(double x, double y)
         {
             ImageBrush image = new ImageBrush {
@@ -27,6 +28,7 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetLeft(Malpa, x - Malpa.Width / 2);
             Canvas.SetTop(Malpa, y - Malpa.Width / 2);
             MalpaList.Add(Malpa);
+            PozycjeMalp.Add(0);
             MainWindow.MyGame.Children.Add(Malpa);
         }
 
@@ -36,16 +38,8 @@ namespace monkeyTowerDefenceTD7
             {
                 ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"))
             };
-            Rectangle Malpa = new Rectangle
-            {
-                Width = 30,
-                Height = 30,
-                Fill = image
-            };
-            Canvas.SetLeft(Malpa, x - Malpa.Width / 2);
-            Canvas.SetTop(Malpa, y - Malpa.Width / 2);
-            MainWindow.MyGame.Children.Add(Malpa);
+            Canvas.SetTop(MalpaList[id], y - MalpaList[id].Height / 2);
+            Canvas.SetLeft(MalpaList[id], x - MalpaList[id].Width / 2);
         }
-
     }
 }
