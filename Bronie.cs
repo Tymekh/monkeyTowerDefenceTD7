@@ -17,7 +17,7 @@ namespace monkeyTowerDefenceTD7
         private DispatcherTimer WeaponTimer = new DispatcherTimer();
         private DispatcherTimer RotateTimer = new DispatcherTimer();
         Rectangle bron;
-        public static double Distance;
+        public static double Distance = 1000;
 
         public Bronie(){
             RotateTimerStart();
