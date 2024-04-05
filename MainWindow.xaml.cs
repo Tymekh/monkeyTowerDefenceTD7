@@ -49,10 +49,10 @@ namespace monkeyTowerDefenceTD7
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
             Point position = e.GetPosition(MyGame);
-            //Malpy malpy = new Malpy();
-            //malpy.CreateMalpa(position.X, position.Y);
-            Mouse_x = position.X;
-            Mouse_y = position.Y;
+            Malpy malpy = new Malpy();
+            malpy.CreateMalpa(position.X, position.Y);
+            //Mouse_x = position.X;
+            //Mouse_y = position.Y;
         }
 
         private void MyCanvas_KeyDown(object sender, KeyEventArgs e)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Automation;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -17,7 +18,10 @@ namespace monkeyTowerDefenceTD7
         private DispatcherTimer WeaponTimer = new DispatcherTimer();
         private DispatcherTimer RotateTimer = new DispatcherTimer();
         Rectangle bron;
-        public static double Distance = 1000;
+        public static double Distance;
+        double index;
+        double angle;
+        double dst1 = 1000;
 
         public Bronie(){
             RotateTimerStart();
@@ -35,8 +39,6 @@ namespace monkeyTowerDefenceTD7
         {
             if (bron != null)
             {
-                //double Distance = 100;
-                double index;
                 //for (int i = 0; i < Malpy.MalpaList.Count; i++)
                 //{
                 //    double dst = Math.Sqrt(Math.Pow(Canvas.GetLeft(bron) - Canvas.GetLeft(Malpy.MalpaList[i]), 2) + Math.Pow(Canvas.GetTop(bron) - Canvas.GetTop(Malpy.MalpaList[i]), 2));
@@ -50,16 +52,22 @@ namespace monkeyTowerDefenceTD7
                 //    }
                 //}
 
-
-                double dst = Math.Sqrt(Math.Pow(Canvas.GetLeft(bron) - MainWindow.Mouse_x, 2) + Math.Pow(Canvas.GetTop(bron) - MainWindow.Mouse_y, 2));
-                Distance = dst;
-                double x1 = MainWindow.Mouse_x;
-                double y1 = MainWindow.Mouse_y;
-                double x2 = Canvas.GetLeft(bron);
-                double y2 = Canvas.GetTop(bron);
-                double angle = CalculateAngle(x1,y1,x2,y2);
+                for (int i = 0; i < Malpy.MalpaList.Count; i++)
+                {
+                    double x1 = Canvas.GetLeft(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualWidth / 2;
+                    double y1 = Canvas.GetTop(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualHeight / 2;
+                    double x2 = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
+                    double y2 = Canvas.GetTop(bron) + bron.ActualHeight / 2;
+                    double dst = CalculateDistance(x1, y1, x2, y2);
+                    if (dst < dst1)
+                    {
+                        dst1 = dst;
+                        index = i;
+                        angle = CalculateAngle(x1, y1, x2, y2);
+                    }
+                }
                 RotateTransform rotation = new RotateTransform(angle * 180 / Math.PI);
-                bron.RenderTransformOrigin = new System.Windows.Point(0.5, 0);
+                bron.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
                 bron.RenderTransform = rotation;
             }
         }
@@ -107,9 +115,13 @@ namespace monkeyTowerDefenceTD7
 
         public double CalculateAngle(double x1, double y1, double x2, double y2)
         {
-            double angle;
-            angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
+            double angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
             return angle;
+        }
+        public double CalculateDistance(double x1, double y1, double x2, double y2)
+        {
+            double dst = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)); //calculating distance betwen 2 points
+            return dst; 
         }
     }
 }
