@@ -36,7 +36,7 @@ namespace monkeyTowerDefenceTD7
 
         private void Timer_Tick(object? sender, EventArgs e)
         {
-            tekst.Text = Bronie.Distance.ToString();
+            ;
         }
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {

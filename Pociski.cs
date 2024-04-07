@@ -16,7 +16,7 @@ namespace monkeyTowerDefenceTD7
             
         }
 
-        public static void Shot(int id, double angle)
+        public static void Shot(int id, double Angle, int Index, double x, double y)
         {
 
         }
