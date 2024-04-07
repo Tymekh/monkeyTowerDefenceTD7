@@ -11,7 +11,7 @@
             <ImageBrush ImageSource="/img/PlanszaPlaceholder.png" />
         </Canvas.Background>
         <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
-        <Polyline Points="10 10, 30 30, 40 100, 200 20, 200 100" Stroke="black" x:Name="Sciezka"/>
+        <Polyline Points="40 0, 40 50, 650 50, 650 120, 550 120, 550 450" Stroke="black" x:Name="Sciezka"/>
     </Canvas>
 
 </Window>

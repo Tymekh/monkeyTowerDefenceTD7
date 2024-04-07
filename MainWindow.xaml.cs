@@ -17,6 +17,7 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int Zycie = 100;
         public static Canvas MyGame;
         public static double Mouse_x, Mouse_y;
         public MainWindow()
@@ -49,17 +50,14 @@ namespace monkeyTowerDefenceTD7
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
             Point position = e.GetPosition(MyGame);
-            Malpy malpy = new Malpy();
-            malpy.CreateMalpa(position.X, position.Y);
+            Malpy.CreateMalpa(position.X, position.Y);
             //Mouse_x = position.X;
             //Mouse_y = position.Y;
         }
 
+        public static List<Point> Punkty = [];
         private void MyCanvas_KeyDown(object sender, KeyEventArgs e)
         {
-            List<Point> Punkty = new List<Point>();
-            List<int> Pozycje = Malpy.PozycjeMalp.Slice(0, Malpy.PozycjeMalp.Count);
-
             if (e.Key == Key.M)
             { 
                 Punkty.Clear();
@@ -70,8 +68,8 @@ namespace monkeyTowerDefenceTD7
                 }
                 for (int i = 0; i < Malpy.MalpaList.Count; i++)
                 {
-                    Malpy.MalpaNaSciezce(i, Punkty[Pozycje[i]].X, Punkty[Pozycje[i]].Y);
-                    Malpy.PozycjeMalp[i]++;
+                    Malpy.StartPoruszania(i);
+                    //Malpy.PozycjeMalp[i]++;
                 }
             }
         }
