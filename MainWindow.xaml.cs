@@ -42,8 +42,8 @@ namespace monkeyTowerDefenceTD7
         {
             Random rand = new Random();
             Point position = e.GetPosition(MyGame);
-            Balony balony = new Balony();
-            balony.CreateBalon(rand.Next(0,6), position.X, position.Y);
+            //Balony balony = new Balony();
+            Balony.CreateBalon(rand.Next(0,6), position.X, position.Y);
         }
 
         private void RightClick(object sender, MouseButtonEventArgs e)

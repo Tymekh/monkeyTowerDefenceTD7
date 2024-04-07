@@ -12,9 +12,13 @@ namespace monkeyTowerDefenceTD7
 {
     internal class Pociski
     {
-
         public Pociski() {
             
+        }
+
+        public static void Shot(int id, double angle)
+        {
+
         }
     }
 }

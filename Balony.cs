@@ -13,7 +13,7 @@ namespace monkeyTowerDefenceTD7
 {
     internal class Balony
     {
-        public void CreateBalon(int id, double x, double y)
+        public static void CreateBalon(int id, double x, double y)
         {
             ImageBrush image = new ImageBrush { };
             switch (id)
