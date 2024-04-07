@@ -19,6 +19,7 @@ namespace monkeyTowerDefenceTD7
         private DispatcherTimer RotateTimer = new DispatcherTimer();
         private DispatcherTimer RechargeTimer = new DispatcherTimer();
         Rectangle bron;
+        Rectangle Target;
         double Angle;
         double Dst1 = 1000;
         bool Recharged = true;
@@ -66,6 +67,7 @@ namespace monkeyTowerDefenceTD7
                     {
                         Dst1 = Dst;
                         Index = i;
+                        Target = Malpy.MalpaList[i];
                         Angle = CalculateAngle(x1, y1, x2, y2);
                     }
                 }
@@ -73,13 +75,15 @@ namespace monkeyTowerDefenceTD7
                 bron.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
                 bron.RenderTransform = rotation;
             }
-            if(Recharged)
+            if(Recharged && Target != null)
             {
                 double x = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
                 double y = Canvas.GetTop(bron) + bron.ActualHeight / 2;
-                Pociski.Shot(id, Angle, Index, x, y);
+                Pociski pocisk = new Pociski();
+                pocisk.Shot(id, Angle, Target, x, y);
                 if(!RechargeTimer.IsEnabled)
                 {
+                    Recharged = false;
                     RechargeTimer.Start();
                 }
             }
@@ -89,7 +93,7 @@ namespace monkeyTowerDefenceTD7
         {
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (id) // id jest domyślnie a do testowania wstawić np. 10
+            switch (10) // id jest domyślnie a do testowania wstawić np. 10
             {
                 case 0:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
