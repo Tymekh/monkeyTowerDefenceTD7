@@ -17,16 +17,19 @@ namespace monkeyTowerDefenceTD7
     {
         private DispatcherTimer WeaponTimer = new DispatcherTimer();
         private DispatcherTimer RotateTimer = new DispatcherTimer();
+        private DispatcherTimer RechargeTimer = new DispatcherTimer();
         Rectangle bron;
-        public static double Distance;
-        double Index;
+        Rectangle Target;
         double Angle;
         double Dst1 = 1000;
-        bool Recharged = false;
+        bool Recharged = true;
+        int Index;
         int id;
+        int Range;
 
         public Bronie(){
             RotateTimerStart();
+            RechargeTimerStart();
         }
 
         private void RotateTimerStart()
@@ -35,6 +38,18 @@ namespace monkeyTowerDefenceTD7
             RotateTimer.Interval = TimeSpan.FromMilliseconds(1);
             RotateTimer.Tick += RotateTimer_Tick;
             RotateTimer.Start();
+        }
+
+        private void RechargeTimerStart()
+        {
+            RechargeTimer = new DispatcherTimer();
+            RechargeTimer.Tick += RechargeTimer_Tick;
+        }
+
+        private void RechargeTimer_Tick(object? sender, EventArgs e)
+        {
+            Recharged = true;
+            RechargeTimer.Stop();
         }
 
         private void RotateTimer_Tick(object? sender, EventArgs e)
@@ -48,10 +63,11 @@ namespace monkeyTowerDefenceTD7
                     double x2 = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
                     double y2 = Canvas.GetTop(bron) + bron.ActualHeight / 2;
                     double Dst = CalculateDistance(x1, y1, x2, y2);
-                    if (Dst < Dst1)
+                    if ((Dst < Dst1) && (Dst < Range))
                     {
                         Dst1 = Dst;
                         Index = i;
+                        Target = Malpy.MalpaList[i];
                         Angle = CalculateAngle(x1, y1, x2, y2);
                     }
                 }
@@ -59,39 +75,62 @@ namespace monkeyTowerDefenceTD7
                 bron.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
                 bron.RenderTransform = rotation;
             }
-            if(Recharged)
+            if(Recharged && Target != null)
             {
-                Pociski.Shot(id, Angle);
+                double x = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
+                double y = Canvas.GetTop(bron) + bron.ActualHeight / 2;
+                Pociski pocisk = new Pociski();
+                pocisk.Shot(id, Angle, Target, x, y);
+                if(!RechargeTimer.IsEnabled)
+                {
+                    Recharged = false;
+                    RechargeTimer.Start();
+                }
             }
         }
 
-        public void StworzBron(int id, double x, double y)
+        public void StworzBron(int idBroni, double x, double y)
         {
+            id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (id) // id jest domyślnie a do testowania wstawić np. 10
+            switch (10) // id jest domyślnie a do testowania wstawić np. 10
             {
                 case 0:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 case 1:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/dzida.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 case 2:
                     // Brazowy balon
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 case 3:
                     // Czarny balon
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 case 4:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/petarda.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 case 5:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/dmuh.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 500;
                     break;
                 default:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));
+                    RechargeTimer.Interval = TimeSpan.FromMilliseconds(1);
+                    Range = 5000;
                     break;
             }
             Rectangle Bron = new Rectangle
