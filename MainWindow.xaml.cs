@@ -50,7 +50,16 @@ namespace monkeyTowerDefenceTD7
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
             Point position = e.GetPosition(MyGame);
-            Malpy.CreateMalpa(position.X, position.Y);
+
+            Malpa malpa = new()
+            {
+                Width = 50,
+                Height = 50
+            };
+            Canvas.SetLeft(malpa, position.X - malpa.Width / 2);
+            Canvas.SetTop(malpa, position.Y - malpa.Height / 2);
+            MyGame.Children.Add(malpa);
+
             //Mouse_x = position.X;
             //Mouse_y = position.Y;
         }
@@ -59,17 +68,21 @@ namespace monkeyTowerDefenceTD7
         private void MyCanvas_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.M)
-            { 
+            {
                 Punkty.Clear();
 
                 foreach (Point p in Sciezka.Points)
                 {
                     Punkty.Add(p);
                 }
-                for (int i = 0; i < Malpy.MalpaList.Count; i++)
+                foreach (Malpa malpa in MyGame.Children.OfType<Malpa>())
                 {
-                    Malpy.StartPoruszania(i);
-                    //Malpy.PozycjeMalp[i]++;
+                    malpa.Pozycja = 0;
+                    Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
+                    Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
+
+                    malpa.TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / new Random().Next(10, 70));
+                    malpa.TimerRuchu.Start();
                 }
             }
         }

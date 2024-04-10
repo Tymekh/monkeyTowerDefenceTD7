@@ -56,7 +56,7 @@ namespace monkeyTowerDefenceTD7
         {
             if (bron != null)
             {
-                for (int i = 0; i < Malpy.MalpaList.Count; i++)
+                for (int i = 0; i < Malpy.MalpaList.Count; i++) // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< foreach (Malpa malpa in MainWindow.MyGame.Children.OfType<Malpa>()) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 {
                     double x1 = Canvas.GetLeft(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualWidth / 2;
                     double y1 = Canvas.GetTop(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualHeight / 2;
