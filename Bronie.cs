@@ -63,11 +63,11 @@ namespace monkeyTowerDefenceTD7
                     double Distance = CalculateDistance(bron, malpa);
                     if ((Distance < LowestDistance) || (LowestDistance == null))
                     {
-                        LowestDistance = Distance;
-                        Target = malpa;
+                        Target = malpa; // Save monkey with lowest distance to balloon
+                        LowestDistance = Distance; // Save value of lowest distance
                     }
                 }
-                if((LowestDistance <= Range) && Target != null)
+                if((LowestDistance <= Range) && Target != null) // Check if Target is in range
                 {
                     double Angle = CalculateAngle(Target, bron);
                     RotateTransform rotation = new RotateTransform(Angle * 180 / Math.PI);
@@ -75,8 +75,7 @@ namespace monkeyTowerDefenceTD7
                     bron.RenderTransform = rotation;
                     if (Recharged)
                     {
-                        Pociski pocisk = new Pociski();
-                        pocisk.Shot(Target, BronPosition);
+                        Pociski.Shot(Target, BronPosition);
                         if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
                         {
                             Recharged = false;
