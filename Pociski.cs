@@ -5,6 +5,7 @@ using System.Reflection.Metadata;
 using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -17,9 +18,8 @@ namespace monkeyTowerDefenceTD7
     {
         private DispatcherTimer BulletTimer = new DispatcherTimer();
         Rectangle Bullet;
-        Rectangle Target;
+        Malpa Target;
         //double Angle;
-        int id;
 
         public Pociski() {
             BulletTimerStart();
@@ -28,7 +28,7 @@ namespace monkeyTowerDefenceTD7
         private void BulletTimerStart()
         {
             BulletTimer = new DispatcherTimer();
-            BulletTimer.Interval = TimeSpan.FromMilliseconds(1);
+            BulletTimer.Interval = TimeSpan.FromSeconds((double)1/60);
             BulletTimer.Tick += BulletTimer_Tick;
             BulletTimer.Start();
         }
@@ -39,9 +39,11 @@ namespace monkeyTowerDefenceTD7
             double y1 = Canvas.GetTop(Bullet) + Bullet.ActualHeight / 2;
             double x2 = Canvas.GetLeft(Target) + Target.ActualWidth / 2;
             double y2 = Canvas.GetTop(Target) + Target.ActualHeight / 2;
-            double Angle = CalculateAngle(x1, y1, x2, y2);
+            Point MalpaPosition = new Point(x1, y1);
+            Point BronPosition = new Point(x2, y2);
+            double Angle = CalculateAngle(MalpaPosition, BronPosition);
 
-            int BulletSpeed = 3;
+            double BulletSpeed = 3;
 
             // change in movement
             double xMovement = Math.Cos(Angle) * BulletSpeed;
@@ -52,11 +54,10 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetTop(Bullet, Canvas.GetTop(Bullet) + yMovement);
         }
 
-        public void Shot(int idBullet, double AngleBullet, Rectangle TargetBullet, double x, double y)
+        public void Shot(Malpa target, Point StartPoint)
         {
             //Angle = AngleBullet;
-            Target = TargetBullet;
-            id = idBullet;
+            Target = target;
 
             Rectangle bullet = new Rectangle
             {
@@ -65,14 +66,14 @@ namespace monkeyTowerDefenceTD7
                 Fill = Brushes.Aquamarine
             };
             Bullet = bullet;
-            Canvas.SetLeft(Bullet, x - Bullet.Width / 2);
-            Canvas.SetTop(Bullet, y - Bullet.Height / 2);
+            Canvas.SetLeft(Bullet, StartPoint.X - Bullet.Width / 2);
+            Canvas.SetTop(Bullet, StartPoint.Y - Bullet.Height / 2);
             MainWindow.MyGame.Children.Add(Bullet);
         }
 
-        public double CalculateAngle(double x1, double y1, double x2, double y2)
+        public double CalculateAngle(Point Point1, Point Point2)
         {
-            double angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
+            double angle = Math.Atan2((Point2.Y - Point1.Y), (Point2.X - Point1.X)); //calculate angle in radians
             return angle;
         }
     }

@@ -19,32 +19,19 @@ namespace monkeyTowerDefenceTD7
     {
         public static int Zycie = 100;
         public static Canvas MyGame;
-        public static double Mouse_x, Mouse_y;
         public MainWindow()
         {
             InitializeComponent();
             MyCanvas.Focus();
             MyGame = MyCanvas;
-            TimerStart();
-        }
-        private void TimerStart()
-        {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Tick += Timer_Tick;
-            timer.Interval = TimeSpan.FromMilliseconds(1);
-            timer.Start();
         }
 
-        private void Timer_Tick(object? sender, EventArgs e)
-        {
-            ;
-        }
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
             Random rand = new Random();
             Point position = e.GetPosition(MyGame);
             //Balony balony = new Balony();
-            Balony.CreateBalon(rand.Next(0,6), position.X, position.Y);
+            Balony.CreateBalon(rand.Next(0,6), position);
         }
 
         private void RightClick(object sender, MouseButtonEventArgs e)
@@ -59,9 +46,6 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetLeft(malpa, position.X - malpa.Width / 2);
             Canvas.SetTop(malpa, position.Y - malpa.Height / 2);
             MyGame.Children.Add(malpa);
-
-            //Mouse_x = position.X;
-            //Mouse_y = position.Y;
         }
 
         public static List<Point> Punkty = [];
@@ -84,6 +68,10 @@ namespace monkeyTowerDefenceTD7
                     malpa.TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / new Random().Next(10, 70));
                     malpa.TimerRuchu.Start();
                 }
+            }
+            if(e.Key == Key.Q)
+            {
+                ;
             }
         }
     }

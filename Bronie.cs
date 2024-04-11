@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+//using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Automation;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -18,12 +21,9 @@ namespace monkeyTowerDefenceTD7
         private DispatcherTimer WeaponTimer = new DispatcherTimer();
         private DispatcherTimer RotateTimer = new DispatcherTimer();
         private DispatcherTimer RechargeTimer = new DispatcherTimer();
-        Rectangle bron;
-        Rectangle Target;
-        double Angle;
-        double Dst1 = 1000;
+        System.Windows.Shapes.Rectangle bron;
+        Point BronPosition;
         bool Recharged = true;
-        int Index;
         int id;
         int Range;
 
@@ -35,7 +35,7 @@ namespace monkeyTowerDefenceTD7
         private void RotateTimerStart()
         {
             RotateTimer = new DispatcherTimer();
-            RotateTimer.Interval = TimeSpan.FromMilliseconds(1);
+            RotateTimer.Interval = TimeSpan.FromSeconds((double)1/60);
             RotateTimer.Tick += RotateTimer_Tick;
             RotateTimer.Start();
         }
@@ -54,42 +54,40 @@ namespace monkeyTowerDefenceTD7
 
         private void RotateTimer_Tick(object? sender, EventArgs e)
         {
-            if (bron != null)
+            Malpa Target = null;
+            Nullable<double> LowestDistance = null;
+            if (bron != null && MainWindow.MyGame.Children.OfType<Malpa> != null)
             {
-                for (int i = 0; i < Malpy.MalpaList.Count; i++) // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< foreach (Malpa malpa in MainWindow.MyGame.Children.OfType<Malpa>()) !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                foreach (Malpa malpa in MainWindow.MyGame.Children.OfType<Malpa>())
                 {
-                    double x1 = Canvas.GetLeft(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualWidth / 2;
-                    double y1 = Canvas.GetTop(Malpy.MalpaList[i]) + Malpy.MalpaList[i].ActualHeight / 2;
-                    double x2 = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
-                    double y2 = Canvas.GetTop(bron) + bron.ActualHeight / 2;
-                    double Dst = CalculateDistance(x1, y1, x2, y2);
-                    if ((Dst < Dst1) && (Dst < Range))
+                    double Distance = CalculateDistance(bron, malpa);
+                    if ((Distance < LowestDistance) || (LowestDistance == null))
                     {
-                        Dst1 = Dst;
-                        Index = i;
-                        Target = Malpy.MalpaList[i];
-                        Angle = CalculateAngle(x1, y1, x2, y2);
+                        LowestDistance = Distance;
+                        Target = malpa;
                     }
                 }
-                RotateTransform rotation = new RotateTransform(Angle * 180 / Math.PI);
-                bron.RenderTransformOrigin = new System.Windows.Point(0.5, 0.5);
-                bron.RenderTransform = rotation;
-            }
-            if(Recharged && Target != null)
-            {
-                double x = Canvas.GetLeft(bron) + bron.ActualWidth / 2;
-                double y = Canvas.GetTop(bron) + bron.ActualHeight / 2;
-                Pociski pocisk = new Pociski();
-                pocisk.Shot(id, Angle, Target, x, y);
-                if(!RechargeTimer.IsEnabled)
+                if((LowestDistance <= Range) && Target != null)
                 {
-                    Recharged = false;
-                    RechargeTimer.Start();
+                    double Angle = CalculateAngle(Target, bron);
+                    RotateTransform rotation = new RotateTransform(Angle * 180 / Math.PI);
+                    bron.RenderTransformOrigin = new Point(0.5, 0.5);
+                    bron.RenderTransform = rotation;
+                    if (Recharged)
+                    {
+                        Pociski pocisk = new Pociski();
+                        pocisk.Shot(Target, BronPosition);
+                        if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
+                        {
+                            Recharged = false;
+                            RechargeTimer.Start();
+                        }
+                    }
                 }
             }
         }
 
-        public void StworzBron(int idBroni, double x, double y)
+        public void StworzBron(int idBroni, Point BalonPosition)
         {
             id = idBroni;
             ImageBrush image = new ImageBrush { };
@@ -129,7 +127,7 @@ namespace monkeyTowerDefenceTD7
                     break;
                 default:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));
-                    RechargeTimer.Interval = TimeSpan.FromMilliseconds(1);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 5000;
                     break;
             }
@@ -139,21 +137,35 @@ namespace monkeyTowerDefenceTD7
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Bron, x - Bron.Width / 2);
-            Canvas.SetTop(Bron, y - Bron.Height / 2);
+            double BronX = BalonPosition.X - Bron.Width / 2;
+            double BronY = BalonPosition.Y - Bron.Height / 2;
+            BronPosition = new Point(BalonPosition.X, BalonPosition.Y);
+
+            Canvas.SetLeft(Bron, BronX);
+            Canvas.SetTop(Bron, BronY);
             MainWindow.MyGame.Children.Add(Bron);
             bron = Bron;
         }
 
-        public double CalculateAngle(double x1, double y1, double x2, double y2)
+        public double CalculateAngle(FrameworkElement point1, FrameworkElement point2)
         {
+            double x1 = Canvas.GetLeft(point1) + point1.ActualWidth / 2;
+            double y1 = Canvas.GetTop(point1) + point1.ActualHeight / 2;
+            double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;
+            double y2 = Canvas.GetTop(point2) + point2.ActualHeight / 2;
+
             double angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
             return angle;
         }
-        public double CalculateDistance(double x1, double y1, double x2, double y2)
+        public double CalculateDistance(FrameworkElement point1, FrameworkElement point2)
         {
-            double Dst = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)); //calculating distance betwen 2 points
-            return Dst; 
+            double x1 = Canvas.GetLeft(point1) + point1.ActualWidth / 2;
+            double y1 = Canvas.GetTop(point1) + point1.ActualHeight / 2;
+            double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;
+            double y2 = Canvas.GetTop(point2) + point2.ActualHeight / 2;
+
+            double Distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)); //calculating distance betwen 2 points
+            return Distance; 
         }
     }
 }
