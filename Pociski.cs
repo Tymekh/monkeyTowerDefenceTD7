@@ -15,6 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Drawing;
 using Rectangle = System.Windows.Shapes.Rectangle;
 using Point = System.Windows.Point;
+using static monkeyTowerDefenceTD7.Pociski;
 
 namespace monkeyTowerDefenceTD7
 {
@@ -35,12 +36,12 @@ namespace monkeyTowerDefenceTD7
             {
                 Rectangle Bullet = BulletList[i].Bullet;
                 Malpa Target = BulletList[i].Malpa;
-                BulletList[i].Lifetime += (double)1 / 60;
+                BulletList[i].Lifetime += (double)1 / 30;
 
 
                 double Angle = CalculateAngle(Bullet, Target);
 
-                double BulletSpeed = 3;
+                double BulletSpeed = 10;
 
                 // change in movement
                 double xMovement = Math.Cos(Angle) * BulletSpeed;
@@ -49,11 +50,16 @@ namespace monkeyTowerDefenceTD7
                 Canvas.SetLeft(Bullet, Canvas.GetLeft(Bullet) + xMovement);
                 Canvas.SetTop(Bullet, Canvas.GetTop(Bullet) + yMovement);
 
-                
+                if(CheckColision(Bullet, Target))
+                {
+                    MessageBox.Show("Trafiono");
+                    DeleteBullet(i);
+                    continue;
+                }
+
                 if (BulletList[i].Lifetime > 4) // Check if bullet is older than specified time
                 {
-                    canvas.Children.Remove(Bullet);
-                    BulletList.RemoveAt(i);
+                    DeleteBullet(i);
                 }
             }
         }
@@ -87,6 +93,32 @@ namespace monkeyTowerDefenceTD7
                 BulletTimer.Interval = TimeSpan.FromSeconds((double)1 / 60);
                 BulletTimer.Tick += BulletTimer_Tick;
                 BulletTimer.Start();
+            }
+        }
+
+        private static void DeleteBullet(int id)
+        {
+            canvas.Children.Remove(BulletList[id].Bullet);
+            BulletList.RemoveAt(id);
+        }
+
+        private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2)
+        {
+            var x1 = Canvas.GetLeft(point1);
+            var y1 = Canvas.GetTop(point1);
+            Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth, point1.ActualHeight);
+
+            var x2 = Canvas.GetLeft(point2);
+            var y2 = Canvas.GetTop(point2);
+            Rect HitBox2 = new Rect(x2, y2, point2.ActualWidth, point2.ActualHeight);
+
+            if (HitBox1.IntersectsWith(HitBox2))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
