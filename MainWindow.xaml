@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
         Title="monkeyTowerDefenceTD7" Height="450" Width="800">
-    <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick" KeyDown="MyCanvas_KeyDown">
+    <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick">
         <Canvas.Background>
             <ImageBrush ImageSource="/img/PlanszaPlaceholder.png" />
         </Canvas.Background>

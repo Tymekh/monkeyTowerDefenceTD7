@@ -35,7 +35,7 @@ namespace monkeyTowerDefenceTD7
         private void RotateTimerStart()
         {
             RotateTimer = new DispatcherTimer();
-            RotateTimer.Interval = TimeSpan.FromMilliseconds(1);
+            RotateTimer.Interval = TimeSpan.FromSeconds((double)1 / 30);
             RotateTimer.Tick += RotateTimer_Tick;
             RotateTimer.Start();
         }
@@ -129,7 +129,7 @@ namespace monkeyTowerDefenceTD7
                     break;
                 default:
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));
-                    RechargeTimer.Interval = TimeSpan.FromMilliseconds(1);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds((double)1 / 30);
                     Range = 5000;
                     break;
             }

@@ -44,6 +44,7 @@ namespace monkeyTowerDefenceTD7
         {
             Canvas.SetLeft(MalpaList[id], MainWindow.Punkty[PozycjeMalp[id]].X - MalpaList[id].Width / 2);
             Canvas.SetTop(MalpaList[id], MainWindow.Punkty[PozycjeMalp[id]].Y - MalpaList[id].Height / 2);
+            ListaTimerowRuchu.Add(new DispatcherTimer());
             void Malpy_Tick(object? sender, EventArgs e)
             {
                 try
@@ -84,7 +85,6 @@ namespace monkeyTowerDefenceTD7
                     MalpaList.RemoveAt(id);
                 }
             }
-            ListaTimerowRuchu.Add(new DispatcherTimer());
 
             ListaTimerowRuchu[id].Interval = TimeSpan.FromSeconds(1 / PredkosciMalp[id]);
             ListaTimerowRuchu[id].Tick += Malpy_Tick;

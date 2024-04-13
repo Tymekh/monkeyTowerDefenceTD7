@@ -28,7 +28,7 @@ namespace monkeyTowerDefenceTD7
         private void BulletTimerStart()
         {
             BulletTimer = new DispatcherTimer();
-            BulletTimer.Interval = TimeSpan.FromMilliseconds(1);
+            BulletTimer.Interval = TimeSpan.FromSeconds((double)1 / 30);
             BulletTimer.Tick += BulletTimer_Tick;
             BulletTimer.Start();
         }

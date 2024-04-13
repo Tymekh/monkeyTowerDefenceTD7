@@ -21,48 +21,42 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class Malpa : UserControl
     {
-        public DispatcherTimer TimerRuchu = new();
-        public int Predkosc;
-        public int Pozycja;
+        public int Pozycja = 0;
+        public int Predkosc = 5;
         public Malpa()
         {
             InitializeComponent();
-
-            TimerRuchu.Tick += Malpy_Tick;
         }
-        void Malpy_Tick(object? sender, EventArgs e)
+        public void Malpy_Tick()
         {
-            try
+            if (Pozycja < MainWindow.Punkty.Count)
             {
-                if (!(MainWindow.Punkty[Pozycja].X == Canvas.GetLeft(this) + Width / 2 &&
-                    MainWindow.Punkty[Pozycja].Y == Canvas.GetTop(this) + Width / 2))
+                if (!(MainWindow.Punkty[Pozycja].X == Canvas.GetLeft(this) + ActualWidth / 2 &&
+                    MainWindow.Punkty[Pozycja].Y == Canvas.GetTop(this) + ActualWidth / 2))
                 {
-                    if (MainWindow.Punkty[Pozycja].X < Canvas.GetLeft(this) + Width / 2)
-                    {
-                        Canvas.SetLeft(this, Canvas.GetLeft(this) - 5);
-                    }
-                    else if (MainWindow.Punkty[Pozycja].X > Canvas.GetLeft(this) + Width / 2)
-                    {
-                        Canvas.SetLeft(this, Canvas.GetLeft(this) + 5);
-                    }
-                    else if (MainWindow.Punkty[Pozycja].Y < Canvas.GetTop(this) + Height / 2)
-                    {
-                        Canvas.SetTop(this, Canvas.GetTop(this) - 5);
-                    }
-                    else if (MainWindow.Punkty[Pozycja].Y > Canvas.GetTop(this) + Height / 2)
-                    {
-                        Canvas.SetTop(this, Canvas.GetTop(this) + 5);
-                    }
-                    else MessageBox.Show("jesli to sie pokazalo to cos sie mega zepsulo xd");
+                    // na 100% mój kod, nie ukradnięty z Pociski.cs
+
+                    double x1 = Canvas.GetLeft(this) + ActualWidth / 2;
+                    double y1 = Canvas.GetTop(this) + ActualHeight / 2;
+                    double x2 = MainWindow.Punkty[Pozycja].X;
+                    double y2 = MainWindow.Punkty[Pozycja].Y;
+                    double Angle = Math.Atan2(y2 - y1, x2 - x1);
+
+                    // change in movement
+                    double xMovement = Math.Cos(Angle) * Predkosc;
+                    double yMovement = Math.Sin(Angle) * Predkosc;
+
+                    // setting position
+                    Canvas.SetLeft(this, Canvas.GetLeft(this) + xMovement);
+                    Canvas.SetTop(this, Canvas.GetTop(this) + yMovement);
                 }
                 else
                 {
                     Pozycja++;
                 }
             }
-            catch (Exception)
+            else
             {
-                TimerRuchu.Stop();
                 MainWindow.Zycie -= 5;
                 MessageBox.Show(MainWindow.Zycie.ToString());
                 MainWindow.MyGame.Children.Remove(this);

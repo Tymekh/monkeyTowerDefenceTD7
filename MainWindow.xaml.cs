@@ -26,12 +26,13 @@ namespace monkeyTowerDefenceTD7
             MyCanvas.Focus();
             MyGame = MyCanvas;
             TimerStart();
+            MalpkiStart();
         }
         private void TimerStart()
         {
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
-            timer.Interval = TimeSpan.FromMilliseconds(1);
+            timer.Interval = TimeSpan.FromSeconds((double)1 / 30);
             timer.Start();
         }
 
@@ -56,8 +57,8 @@ namespace monkeyTowerDefenceTD7
                 Width = 50,
                 Height = 50
             };
-            Canvas.SetLeft(malpa, position.X - malpa.Width / 2);
-            Canvas.SetTop(malpa, position.Y - malpa.Height / 2);
+            Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
+            Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
             MyGame.Children.Add(malpa);
 
             //Mouse_x = position.X;
@@ -65,25 +66,27 @@ namespace monkeyTowerDefenceTD7
         }
 
         public static List<Point> Punkty = [];
-        private void MyCanvas_KeyDown(object sender, KeyEventArgs e)
+        private static DispatcherTimer TimerRuchu = new();
+        private void MalpkiStart()
         {
-            if (e.Key == Key.M)
-            {
                 Punkty.Clear();
-
                 foreach (Point p in Sciezka.Points)
                 {
                     Punkty.Add(p);
                 }
-                foreach (Malpa malpa in MyGame.Children.OfType<Malpa>())
-                {
-                    malpa.Pozycja = 0;
-                    Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
-                    Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
+                TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / 15);
+                TimerRuchu.Tick += TimerRuchu_Tick;
 
-                    malpa.TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / new Random().Next(10, 70));
-                    malpa.TimerRuchu.Start();
-                }
+                TimerRuchu.Start();
+        }
+
+        private void TimerRuchu_Tick(object? sender, EventArgs e)
+        {
+            for (int i = 0; i < MyGame.Children.OfType<Malpa>().Count(); i++)
+            {
+                Malpa malpa = MyGame.Children.OfType<Malpa>().ElementAt(i);
+
+                malpa.Malpy_Tick();
             }
         }
     }
