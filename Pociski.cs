@@ -29,6 +29,7 @@ namespace monkeyTowerDefenceTD7
             public Rectangle Bullet {  get; set; }
             public Malpa Malpa { get; set; }
             public double Lifetime {  get; set; }
+            public double LifetimeLimit {  get; set; }
         }
         private static void BulletTimer_Tick(object? sender, EventArgs e)
         { 
@@ -41,7 +42,9 @@ namespace monkeyTowerDefenceTD7
 
                 double Angle = CalculateAngle(Bullet, Target);
 
-                double BulletSpeed = 10;
+                Log.Tekst += Angle.ToString() + "\n";
+
+                double BulletSpeed = 3;
 
                 // change in movement
                 double xMovement = Math.Cos(Angle) * BulletSpeed;
@@ -52,24 +55,24 @@ namespace monkeyTowerDefenceTD7
 
                 if(CheckColision(Bullet, Target))
                 {
-                    MessageBox.Show("Trafiono");
+                    //MessageBox.Show("Trafiono");
                     DeleteBullet(i);
                     continue;
                 }
 
-                if (BulletList[i].Lifetime > 4) // Check if bullet is older than specified time
+                if (BulletList[i].Lifetime > BulletList[i].LifetimeLimit) // Check if bullet is older than specified time
                 {
                     DeleteBullet(i);
                 }
             }
         }
 
-        public static void Shot(Malpa target, Point StartPoint)
+        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size, int StartingDistance = 0)
         {
             Rectangle bullet = new Rectangle
             {
-                Width = 10,
-                Height = 10,
+                Width = Size,
+                Height = Size,
                 Fill = Brushes.Aquamarine
             };
             //BulletList.Add(bullet);
@@ -77,13 +80,22 @@ namespace monkeyTowerDefenceTD7
 
             BulletList.Add(new Bullets { 
                 Bullet = bullet,
-                Malpa = target,
+                Malpa = Target,
                 Lifetime = 0,
+                LifetimeLimit = LifetimeLimit,
             });
 
-            //ArraysList.Add(();
             Canvas.SetLeft(bullet, StartPoint.X - bullet.Width / 2);
             Canvas.SetTop(bullet, StartPoint.Y - bullet.Height / 2);
+
+            double Angle = CalculateAngle(bullet, Target);
+
+            double xMovement = Math.Cos(Angle) * StartingDistance;
+            double yMovement = Math.Sin(Angle) * StartingDistance;
+
+            Canvas.SetLeft(bullet, Canvas.GetLeft(bullet) + xMovement);
+            Canvas.SetTop(bullet, Canvas.GetTop(bullet) + yMovement);
+
             MainWindow.MyGame.Children.Add(bullet);
 
             if(BulletTimer.IsEnabled == false) // Check if timer is running and starts it once
@@ -104,9 +116,11 @@ namespace monkeyTowerDefenceTD7
 
         private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2)
         {
-            var x1 = Canvas.GetLeft(point1);
-            var y1 = Canvas.GetTop(point1);
-            Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth, point1.ActualHeight);
+            int Smaller = 2; // Says how much smaler is the hitbox acording to the bullet sice (eg. 2 is 2 times smaller)
+
+            var x1 = Canvas.GetLeft(point1) + (point1.ActualWidth / (Smaller * 2));
+            var y1 = Canvas.GetTop(point1) + (point1.ActualHeight / (Smaller * 2));
+            Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth / Smaller, point1.ActualHeight / Smaller);
 
             var x2 = Canvas.GetLeft(point2);
             var y2 = Canvas.GetTop(point2);

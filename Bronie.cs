@@ -26,6 +26,10 @@ namespace monkeyTowerDefenceTD7
         bool Recharged = true;
         int id;
         int Range;
+        double LifetimeLimit = 10; // Default Lifetime (in seconds)
+        double Size = 10; // Default size
+        int StartingDistance = 0; // How far should bullet spawn
+
 
         public Bronie(){
             RotateTimerStart();
@@ -75,7 +79,7 @@ namespace monkeyTowerDefenceTD7
                     bron.RenderTransform = rotation;
                     if (Recharged)
                     {
-                        Pociski.Shot(Target, BronPosition);
+                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, StartingDistance);
                         if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
                         {
                             Recharged = false;
@@ -90,44 +94,57 @@ namespace monkeyTowerDefenceTD7
         {
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (10) // id jest domyślnie a do testowania wstawić np. 10
+            switch (id) // id jest domyślnie a do testowania wstawić np. 10
             {
-                case 0:
+                case 0: // Czerwony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 500;
+                    LifetimeLimit = 5;
+                    Size = 10;
                     break;
-                case 1:
+                case 1: // Niebieski
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/dzida.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
-                    Range = 500;
+                    Range = 100;
+                    LifetimeLimit = 0.01;
+                    Size = 100;
+                    StartingDistance = 50;
                     break;
-                case 2:
-                    // Brazowy balon
+                case 2: // Brązowy
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 500;
+                    LifetimeLimit = 5;
+                    Size = 10;
                     break;
-                case 3:
-                    // Czarny balon
+                case 3: // Czarny
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 500;
+                    LifetimeLimit = 5;
+                    Size = 10;
                     break;
-                case 4:
+                case 4: // Źółty
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/petarda.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 500;
+                    LifetimeLimit = 5;
+                    Size = 10;
                     break;
-                case 5:
+                case 5: // Zielony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/dmuh.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 500;
+                    LifetimeLimit = 5;
+                    Size = 10;
                     break;
-                default:
+                default: // Default (testowanie)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(4);
                     Range = 5000;
+                    LifetimeLimit = 10;
+                    Size = 10;
                     break;
             }
             Rectangle Bron = new Rectangle

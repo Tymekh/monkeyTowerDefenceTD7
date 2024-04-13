@@ -24,16 +24,26 @@ namespace monkeyTowerDefenceTD7
             InitializeComponent();
             MyCanvas.Focus();
             MyGame = MyCanvas;
-            TimerStart();
+            //TimerStart();
             MalpkiStart();
+            //ShowLog(); // Do wyświetlania dziwnych wartości
         }
-        private void TimerStart()
+
+        private void ShowLog()
         {
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Tick += Timer_Tick;
-            timer.Interval = TimeSpan.FromSeconds((double)1 / 30);
-            timer.Start();
+            InitializeComponent();
+            Log SecondWindow = new Log();
+            //SecondWindow.Owner = this;
+            SecondWindow.Show();
         }
+
+        //private void TimerStart()
+        //{
+        //    DispatcherTimer timer = new DispatcherTimer();
+        //    timer.Tick += Timer_Tick;
+        //    timer.Interval = TimeSpan.FromSeconds((double)1 / 30);
+        //    timer.Start();
+        //}
 
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
