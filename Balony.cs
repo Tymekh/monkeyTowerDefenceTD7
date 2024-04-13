@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
 using System.Windows.Media;
@@ -13,7 +14,7 @@ namespace monkeyTowerDefenceTD7
 {
     internal class Balony
     {
-        public static void CreateBalon(int id, double x, double y)
+        public static void CreateBalon(int id, Point BallonPosition)
         {
             ImageBrush image = new ImageBrush { };
             switch (id)
@@ -57,11 +58,11 @@ namespace monkeyTowerDefenceTD7
                 Height = 100,
                 Fill = image
             };
-            Canvas.SetLeft(Balon, x - Balon.Width/2);
-            Canvas.SetTop(Balon, y - Balon.Width/2);
+            Canvas.SetLeft(Balon, BallonPosition.X - Balon.Width/2);
+            Canvas.SetTop(Balon, BallonPosition.Y - Balon.Width/2);
             MainWindow.MyGame.Children.Add(Balon);
             Bronie bron = new Bronie();
-            bron.StworzBron(id, x, y);
+            bron.StworzBron(id, BallonPosition);
         }
         
     }
