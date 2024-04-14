@@ -76,7 +76,7 @@ namespace monkeyTowerDefenceTD7
                     Obrazek.Height = 50;
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
                     Wartosc = 5;
-                    Predkosc = 10;
+                    Predkosc = new Random().Next(9, 11);
                     Zycie = 1;
 
                     break;
@@ -193,13 +193,32 @@ namespace monkeyTowerDefenceTD7
             };
             CzyZyje = false;
             Panel.SetZIndex(Gore, 1);
+
+            if (idMalpy == 3)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    Malpa malpa = new(4)
+                    {
+                        Width = 100,
+                        Height = 100
+                    };
+                    malpa.Pozycja = Pozycja;
+                    Canvas.SetTop(malpa, Canvas.GetTop(this));
+                    Canvas.SetLeft(malpa, Canvas.GetLeft(this));
+                    MainWindow.MyGame.Children.Add(malpa);
+                }
+            }
+
             RotateTransform rotation = new RotateTransform(new Random().Next(0, 360) * 180 / Math.PI);
             Gore.RenderTransformOrigin = new Point(0.5, 0.5);
             Gore.RenderTransform = rotation;
+
             Canvas.SetTop(Gore, Canvas.GetTop(this) + ActualWidth / 4 + new Random().Next(-20, 20));
             Canvas.SetLeft(Gore, Canvas.GetLeft(this) + ActualWidth / 4 + new Random().Next(-20, 20));
             MainWindow.MyGame.Children.Add(Gore);
             MainWindow.MyGame.Children.Remove(this);
+
         }
     }
 }
