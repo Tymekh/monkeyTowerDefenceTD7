@@ -76,7 +76,7 @@ namespace monkeyTowerDefenceTD7
                     Obrazek.Height = 50;
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
                     Wartosc = 5;
-                    Predkosc = 10;
+                    Predkosc = new Random().Next(9, 11);
                     Zycie = 1;
 
                     break;
