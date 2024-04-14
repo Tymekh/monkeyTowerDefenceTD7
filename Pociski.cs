@@ -79,7 +79,7 @@ namespace monkeyTowerDefenceTD7
             };
             //BulletList.Add(bullet);
             //TargetList.Add(target);
-
+            Panel.SetZIndex(bullet, 2);
             BulletList.Add(new Bullets { 
                 Bullet = bullet,
                 Malpa = Target,
