@@ -64,6 +64,5 @@ namespace monkeyTowerDefenceTD7
             Bronie bron = new Bronie();
             bron.StworzBron(Balon, id, BallonPosition);
         }
-        
     }
 }

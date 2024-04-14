@@ -27,6 +27,8 @@ namespace monkeyTowerDefenceTD7
         public static int Pieniadze = 100;
         public static int Zycie = 100;
         public static int Dlug = 1000;
+        public static int WybranyBalon;
+        public static bool WyborAktywny = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -45,7 +47,7 @@ namespace monkeyTowerDefenceTD7
 
             AktualizujWarotsci();
             MalpkiStart();
-            //ShowLog(); // Do wyświetlania dziwnych wartości
+            ShowLog(); // Do wyświetlania dziwnych wartości
         }
 
         private void ShowLog()
@@ -58,9 +60,12 @@ namespace monkeyTowerDefenceTD7
 
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
-            Random rand = new Random();
-            Point position = e.GetPosition(MyGame);
-            Balony.CreateBalon(rand.Next(0,6), position);
+            if(WyborAktywny == true)
+            {
+                Point position = e.GetPosition(MyGame);
+                Balony.CreateBalon(WybranyBalon, position);
+                WyborAktywny = false;
+            }
         }
 
         private void RightClick(object sender, MouseButtonEventArgs e)
@@ -124,6 +129,15 @@ namespace monkeyTowerDefenceTD7
         private void Button_Click2(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void SelectBalon(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var Numer = button.FontSize;
+            WybranyBalon = (int)Numer - 1;
+            WyborAktywny = true;
+            Log.Tekst += "wybrano balon: " + WybranyBalon.ToString() + "\n";
         }
     }
 }

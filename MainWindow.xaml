@@ -104,12 +104,24 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" Source="/img/Balony/Brazowy/BrazowyBalon.png"/>
-                <Image Grid.Column="1" Grid.Row="0" Source="/img/Balony/Niebieski/NiebieskiBalon.png"/>
-                <Image Grid.Column="0" Grid.Row="1" Source="/img/Balony/Czarny/CzarnyBalon.png"/>
-                <Image Grid.Column="1" Grid.Row="1" Source="/img/Balony/Zielony/ZielonyBalon.png"/>
-                <Image Grid.Column="0" Grid.Row="2" Source="/img/Balony/Czerwony/CzerwonyBalon.png"/>
-                <Image Grid.Column="1" Grid.Row="2" Source="/img/Balony/Zolty/ZoltyBalon.png"/>
+                <Button Grid.Column="0" Grid.Row="0" Click="SelectBalon" FontSize="1">
+                    <Image Source="/img/Balony/Czerwony/CzerwonyBalon.png"/>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="0" Click="SelectBalon" FontSize="2">
+                    <Image Source="/img/Balony/Niebieski/NiebieskiBalon.png"/>
+                </Button>
+                <Button Grid.Column="0" Grid.Row="1" Click="SelectBalon" FontSize="3">
+                    <Image Source="/img/Balony/Brazowy/BrazowyBalon.png"/>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="1" Click="SelectBalon" FontSize="4">
+                    <Image Source="/img/Balony/Czarny/CzarnyBalon.png"/>
+                </Button>
+                <Button Grid.Column="0" Grid.Row="2" Click="SelectBalon" FontSize="5">
+                    <Image Source="/img/Balony/Zolty/ZoltyBalon.png"/>
+                </Button>
+                <Button Grid.Column="1" Grid.Row="2" Click="SelectBalon" FontSize="6">
+                    <Image Source="/img/Balony/Zielony/ZielonyBalon.png"/>
+                </Button>
             </Grid>
         </Grid>
     </Grid>
