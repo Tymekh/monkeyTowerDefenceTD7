@@ -5,13 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
-        Title="monkeyTowerDefenceTD7" Height="450" Width="800">
-    <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick">
-        <Canvas.Background>
-            <ImageBrush ImageSource="/img/PlanszaPlaceholder.png" />
-        </Canvas.Background>
-        <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
-        <Polyline Points="40 0, 40 50, 650 50, 650 120, 550 120, 550 450" Stroke="black" x:Name="Sciezka"/>
-    </Canvas>
+        Title="monkeyTowerDefenceTD7" Height="1080" Width="1920">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick" Grid.Column="0">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/img/PlanszaPlaceholder.png" />
+            </Canvas.Background>
+            <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
+            <Polyline Points="80 0, 80 150, 1250 150, 1250 350, 100 350, 100 550, 1250 550, 1250 800" Stroke="black" x:Name="Sciezka"/>
+        </Canvas>
+        <Grid Grid.Column="1" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" ShowGridLines="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Image Source="/img/Gore/Gore01.png" />
+                    <TextBlock Margin="20" x:Name="ZycieText" FontSize="50">100</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal">
+                    <Image Source="/img/Gore/Gore02.png" />
+                    <TextBlock Margin="20" x:Name="DlugText" Grid.Row="1" FontSize="50">0/1000</TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <Image Source="/img/Gore/Gore03.png" />
+                    <TextBlock Margin="20" x:Name="PieniadzeText" Grid.Row="2" FontSize="50">100</TextBlock>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" ShowGridLines="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+            </Grid>
+
+            <TextBlock></TextBlock>
+        </Grid>
+    </Grid>
 
 </Window>

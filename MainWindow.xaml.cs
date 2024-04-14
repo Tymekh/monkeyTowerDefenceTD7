@@ -17,14 +17,35 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int Zycie = 100;
+        // Zmienić \/\/\/
+        static readonly int DlugPoczatkowy = 1000;
+
         public static Canvas MyGame;
+        public static TextBlock TextPieniadze;
+        public static TextBlock TextZycie;
+        public static TextBlock TextDlug;
+        public static int Pieniadze = 100;
+        public static int Zycie = 100;
+        public static int Dlug = 1000;
         public MainWindow()
         {
             InitializeComponent();
             MyCanvas.Focus();
+
             MyGame = MyCanvas;
+            TextPieniadze = PieniadzeText;
+            TextZycie = ZycieText;
+            TextDlug = DlugText;
+
+
+
+            // \/\/\/ ODKOMENTOWAĆ NA KOŃCU!!!!! \/\/\/
+            //WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
+            // /\/\/\ ODKOMENTOWAĆ NA KOŃCU!!!!! /\/\/\
+
             //TimerStart();
+            AktualizujWarotsci();
             MalpkiStart();
             //ShowLog(); // Do wyświetlania dziwnych wartości
         }
@@ -55,15 +76,21 @@ namespace monkeyTowerDefenceTD7
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            Point position = e.GetPosition(MyGame);
+            //Point position = e.GetPosition(MyGame);
 
-            Malpa malpa = new()
+            SpawnMalpka(new Random().Next(0, 8));
+            //SpawnMalpka(7);
+        }
+
+        void SpawnMalpka(int id)
+        {
+            Malpa malpa = new(id)
             {
-                Width = 50,
-                Height = 50
+                Width = 100,
+                Height = 100
             };
             Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
-            Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
+            Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height);
             MyGame.Children.Add(malpa);
         }
 
@@ -88,8 +115,15 @@ namespace monkeyTowerDefenceTD7
             {
                 Malpa malpa = MyGame.Children.OfType<Malpa>().ElementAt(i);
 
-                malpa.Malpy_Tick();
+                malpa.RuchMalpy();
             }
+        }
+
+        public static void AktualizujWarotsci()
+        {
+            TextPieniadze.Text = Pieniadze.ToString();
+            TextZycie.Text = Zycie.ToString();
+            TextDlug.Text = $"{DlugPoczatkowy - Dlug}/{DlugPoczatkowy}";
         }
     }
 }

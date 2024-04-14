@@ -21,13 +21,80 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class Malpa : UserControl
     {
+        public int Zycie = 10;
         public int Pozycja = 0;
         public int Predkosc = 5;
-        public Malpa()
+        public int Wartosc = 10;
+        public int Obrazenia = 1;
+
+        public Malpa(int id)
         {
             InitializeComponent();
+            UstawWlasciwosci(id);
         }
-        public void Malpy_Tick()
+
+        private void UstawWlasciwosci(int id)
+        {
+            switch (id)
+            {
+                case 0:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
+                    Wartosc = 10;
+                    Predkosc = 5;
+                    Zycie = 10;
+
+                    break;
+                case 1:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Albinos.png"));
+                    Wartosc = 10;
+                    Predkosc = 5;
+
+                    break;
+                case 2:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Czarnuch.png"));
+                    Wartosc = 1;
+                    Predkosc = 8;
+
+                    break;
+                case 3:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Matka.png"));
+                    Wartosc = 20;
+                    Predkosc = 2;
+
+                    break;
+                case 4:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
+                    Wartosc = 5;
+                    Predkosc = 10;
+
+                    break;
+                case 5:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
+                    Wartosc = 15;
+                    Predkosc = 3;
+
+                    break;
+                case 6:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Zbroja.png"));
+                    Wartosc = 20;
+                    Predkosc = 2;
+
+                    break;
+                case 7:
+                    Obrazek.Source = new BitmapImage(new Uri($@"pack://application:,,/img/Maupy/Mutanty/Maupa_Mutant0{new Random().Next(1, 9)}.png"));
+                    Wartosc = new Random().Next(1, 41);   
+                    Predkosc = new Random().Next(1, 8);
+
+                    break;
+                default:
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
+                    Wartosc = 10;
+                    Predkosc = 5;
+
+                    break;
+            }
+        }
+        public void RuchMalpy()
         {
             if (Pozycja < MainWindow.Punkty.Count)
             {
@@ -46,9 +113,19 @@ namespace monkeyTowerDefenceTD7
                     double xMovement = Math.Cos(Angle) * Predkosc;
                     double yMovement = Math.Sin(Angle) * Predkosc;
 
+                    double Distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+
                     // setting position
-                    Canvas.SetLeft(this, Canvas.GetLeft(this) + xMovement);
-                    Canvas.SetTop(this, Canvas.GetTop(this) + yMovement);
+                    if (Distance > Predkosc)
+                    {
+                        Canvas.SetLeft(this, Canvas.GetLeft(this) + xMovement);
+                        Canvas.SetTop(this, Canvas.GetTop(this) + yMovement);
+                    }
+                    else
+                    {
+                        Canvas.SetLeft(this, MainWindow.Punkty[Pozycja].X - ActualWidth / 2);
+                        Canvas.SetTop(this, MainWindow.Punkty[Pozycja].Y - ActualWidth / 2);
+                    }
                 }
                 else
                 {
@@ -57,8 +134,9 @@ namespace monkeyTowerDefenceTD7
             }
             else
             {
-                MainWindow.Zycie -= 5;
-                MessageBox.Show(MainWindow.Zycie.ToString());
+                MainWindow.Zycie -= Obrazenia;
+                MainWindow.AktualizujWarotsci();
+                //MessageBox.Show(MainWindow.Zycie.ToString());
                 MainWindow.MyGame.Children.Remove(this);
             }
         }

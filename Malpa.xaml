@@ -10,5 +10,5 @@
             <ImageBrush ImageSource="/img/Maupy/Maupa.png"></ImageBrush>
         </Rectangle.Fill>
     </Rectangle>-->
-    <Image Source="/img/Maupy/Maupa.png" />
+    <Image x:Name="Obrazek" Source="/img/Maupy/Maupa.png" />
 </UserControl>

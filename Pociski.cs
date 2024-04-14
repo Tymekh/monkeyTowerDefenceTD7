@@ -44,7 +44,7 @@ namespace monkeyTowerDefenceTD7
 
                 Log.Tekst += Angle.ToString() + "\n";
 
-                double BulletSpeed = 3;
+                double BulletSpeed = 10;
 
                 // change in movement
                 double xMovement = Math.Cos(Angle) * BulletSpeed;
@@ -56,6 +56,7 @@ namespace monkeyTowerDefenceTD7
                 if(CheckColision(Bullet, Target))
                 {
                     //MessageBox.Show("Trafiono");
+                    //Target.Zycie -= Obrazenia; <<<<<<<<<<
                     DeleteBullet(i);
                     continue;
                 }

@@ -17,6 +17,9 @@
     <None Remove="img\Balony\Czerwony\luke.png" />
     <None Remove="img\Balony\invisible.png" />
     <None Remove="img\BronPlaceholder.png" />
+    <None Remove="img\Gore\Gore01.png" />
+    <None Remove="img\Gore\Gore02.png" />
+    <None Remove="img\Gore\Gore03.png" />
     <None Remove="img\Maupy\Maupa-Matka.png" />
     <None Remove="img\Maupy\Maupa.png" />
     <None Remove="img\Maupy\Maupa_Albinos.png" />
@@ -65,6 +68,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\BronPlaceholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore01.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore02.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore03.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Maupy\Maupa.png">
