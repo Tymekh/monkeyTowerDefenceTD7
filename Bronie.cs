@@ -29,6 +29,9 @@ namespace monkeyTowerDefenceTD7
         double LifetimeLimit = 10; // Default Lifetime (in seconds)
         double Size = 10; // Default size
         int StartingDistance = 0; // How far should bullet spawn
+        int Dmg;
+        bool isExplosive = false;
+        bool isZolty = false;
 
 
         public Bronie(){
@@ -79,7 +82,7 @@ namespace monkeyTowerDefenceTD7
                     bron.RenderTransform = rotation;
                     if (Recharged)
                     {
-                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, StartingDistance);
+                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, StartingDistance);
                         if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
                         {
                             Recharged = false;
@@ -94,14 +97,16 @@ namespace monkeyTowerDefenceTD7
         {
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (id) // id jest domyślnie a do testowania wstawić np. 10
+            switch (4) // id jest domyślnie a do testowania wstawić np. 10
             {
                 case 0: // Czerwony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds((double)2.5);
                     Range = 500;
                     LifetimeLimit = 5;
                     Size = 10;
+                    Dmg = 20;
+                    
                     break;
                 case 1: // Niebieski
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/dzida.png"));
@@ -110,41 +115,49 @@ namespace monkeyTowerDefenceTD7
                     LifetimeLimit = 0.01;
                     Size = 100;
                     StartingDistance = 50;
+                    Dmg = 10;
                     break;
-                case 2: // Brązowy
+                case 2: // Brązowy (wybuchająca)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    Range = 200;
+                    LifetimeLimit = 0.01;
+                    Size = 200;
+                    Dmg = 50;
+                    isExplosive = true;
+                    break;
+                case 3: // Czarny (nic nie robi)
+                    image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(3600);
                     Range = 500;
                     LifetimeLimit = 5;
                     Size = 10;
-                    break;
-                case 3: // Czarny
-                    image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
-                    Range = 500;
-                    LifetimeLimit = 5;
-                    Size = 10;
+                    Dmg = 0;
                     break;
                 case 4: // Źółty
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/petarda.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
-                    Range = 500;
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(2);
+                    Range = 200;
                     LifetimeLimit = 5;
-                    Size = 10;
+                    Size = 15;
+                    Dmg = 0;
+                    isZolty = true;
                     break;
                 case 5: // Zielony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/dmuh.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds((double)1.5);
                     Range = 500;
                     LifetimeLimit = 5;
                     Size = 10;
+                    Dmg = 10;
                     break;
                 default: // Default (testowanie)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(4);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
                     Range = 5000;
-                    LifetimeLimit = 10;
+                    LifetimeLimit = 100;
                     Size = 10;
+                    Dmg = 100000;
                     break;
             }
             Rectangle Bron = new Rectangle

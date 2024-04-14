@@ -30,6 +30,9 @@ namespace monkeyTowerDefenceTD7
             public Malpa Malpa { get; set; }
             public double Lifetime {  get; set; }
             public double LifetimeLimit {  get; set; }
+            public int Dmg { get; set; }
+            public bool isExplosive { get; set; }
+            public bool isZolty { get; set; }
         }
         private static void BulletTimer_Tick(object? sender, EventArgs e)
         { 
@@ -38,11 +41,12 @@ namespace monkeyTowerDefenceTD7
                 Rectangle Bullet = BulletList[i].Bullet;
                 Malpa Target = BulletList[i].Malpa;
                 BulletList[i].Lifetime += (double)1 / 30;
+                int Damage = BulletList[i].Dmg;
 
 
                 double Angle = CalculateAngle(Bullet, Target);
 
-                Log.Tekst += Angle.ToString() + "\n";
+                //Log.Tekst += Angle.ToString() + "\n";
 
                 double BulletSpeed = 10;
 
@@ -55,10 +59,30 @@ namespace monkeyTowerDefenceTD7
 
                 if(CheckColision(Bullet, Target))
                 {
+                    if (BulletList[i].isZolty)
+                    {
+                        double x = Canvas.GetLeft(Bullet) + Bullet.ActualWidth / 2;
+                        double y = Canvas.GetTop(Bullet) + Bullet.ActualHeight / 2;
+                        
+                        Pociski.Shot(Target, new Point(x,y), 0.01, 100, 1000, true, false, 0);
+                        DeleteBullet(i);
+                        continue;
+                    }
+                    if (BulletList[i].isExplosive)
+                    {
+                        for(int j = 0; j < MainWindow.MyGame.Children.OfType<Malpa>().Count(); j++)
+                        {
+                            Malpa malpa = MainWindow.MyGame.Children.OfType<Malpa>().ElementAt(j);
+                            if(CheckColision(Bullet, malpa))
+                            {
+                                if (Target.CzyZyje) Target.ZadajObrazenia(Damage);
+                                Log.Tekst += "trafiono \n";
+                            }
+                        }
+                    }
                     //MessageBox.Show("Trafiono");
-                    //Target.Zycie -= Obrazenia; <<<<<<<<<<
-                    if (Target.CzyZyje) Target.ZadajObrazenia(7);
                     DeleteBullet(i);
+                    if (Target.CzyZyje) Target.ZadajObrazenia(Damage);
                     continue;
                 }
 
@@ -69,7 +93,7 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size, int StartingDistance = 0)
+        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size,int Damage,bool isExposive, bool isZolty, int StartingDistance = 0)
         {
             Rectangle bullet = new Rectangle
             {
@@ -85,6 +109,10 @@ namespace monkeyTowerDefenceTD7
                 Malpa = Target,
                 Lifetime = 0,
                 LifetimeLimit = LifetimeLimit,
+                Dmg = Damage,
+                isExplosive = isExposive,
+                isZolty = isZolty,
+                
             });
 
             Canvas.SetLeft(bullet, StartPoint.X - bullet.Width / 2);
@@ -118,10 +146,14 @@ namespace monkeyTowerDefenceTD7
 
         private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2)
         {
-            int Smaller = 2; // Says how much smaler is the hitbox acording to the bullet sice (eg. 2 is 2 times smaller)
+            int Smaller = 1; // Says how much smaler is the hitbox acording to the bullet sice (eg. 2 is 2 times smaller)
 
-            var x1 = Canvas.GetLeft(point1) + (point1.ActualWidth / (Smaller * 2));
-            var y1 = Canvas.GetTop(point1) + (point1.ActualHeight / (Smaller * 2));
+            //var x1 = Canvas.GetLeft(point1) + (point1.ActualWidth / (Smaller * 2));
+            //var y1 = Canvas.GetTop(point1) + (point1.ActualHeight / (Smaller * 2));
+
+            var x1 = Canvas.GetLeft(point1);
+            var y1 = Canvas.GetTop(point1);
+
             Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth / Smaller, point1.ActualHeight / Smaller);
 
             var x2 = Canvas.GetLeft(point2);
