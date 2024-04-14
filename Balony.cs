@@ -62,7 +62,7 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetTop(Balon, BallonPosition.Y - Balon.Width/2);
             MainWindow.MyGame.Children.Add(Balon);
             Bronie bron = new Bronie();
-            bron.StworzBron(id, BallonPosition);
+            bron.StworzBron(Balon, id, BallonPosition);
         }
         
     }

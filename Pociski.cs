@@ -16,6 +16,7 @@ using System.Drawing;
 using Rectangle = System.Windows.Shapes.Rectangle;
 using Point = System.Windows.Point;
 using static monkeyTowerDefenceTD7.Pociski;
+using System.Windows.Media.Imaging;
 
 namespace monkeyTowerDefenceTD7
 {
@@ -40,22 +41,24 @@ namespace monkeyTowerDefenceTD7
             {
                 Rectangle Bullet = BulletList[i].Bullet;
                 Malpa Target = BulletList[i].Malpa;
-                BulletList[i].Lifetime += (double)1 / 30;
+                BulletList[i].Lifetime += (double)1 / 60;
                 int Damage = BulletList[i].Dmg;
 
+                if (Target != null)
+                {
+                    double Angle = CalculateAngle(Bullet, Target);
 
-                double Angle = CalculateAngle(Bullet, Target);
+                    //Log.Tekst += Angle.ToString() + "\n";
 
-                //Log.Tekst += Angle.ToString() + "\n";
+                    double BulletSpeed = 10;
 
-                double BulletSpeed = 10;
+                    // change in movement
+                    double xMovement = Math.Cos(Angle) * BulletSpeed;
+                    double yMovement = Math.Sin(Angle) * BulletSpeed;
 
-                // change in movement
-                double xMovement = Math.Cos(Angle) * BulletSpeed;
-                double yMovement = Math.Sin(Angle) * BulletSpeed;
-
-                Canvas.SetLeft(Bullet, Canvas.GetLeft(Bullet) + xMovement);
-                Canvas.SetTop(Bullet, Canvas.GetTop(Bullet) + yMovement);
+                    Canvas.SetLeft(Bullet, Canvas.GetLeft(Bullet) + xMovement);
+                    Canvas.SetTop(Bullet, Canvas.GetTop(Bullet) + yMovement);
+                }
 
                 if(CheckColision(Bullet, Target))
                 {
@@ -63,22 +66,26 @@ namespace monkeyTowerDefenceTD7
                     {
                         double x = Canvas.GetLeft(Bullet) + Bullet.ActualWidth / 2;
                         double y = Canvas.GetTop(Bullet) + Bullet.ActualHeight / 2;
-                        
-                        Pociski.Shot(Target, new Point(x,y), 0.01, 100, 1000, true, false, 0);
+                        ImageBrush image = new ImageBrush { 
+                        ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/megumin.png"))
+                        };
+                        Pociski.Shot(Target, new Point(x,y), (double)0.5, 100, 5, true, false, image, 0);
                         DeleteBullet(i);
                         continue;
                     }
                     if (BulletList[i].isExplosive)
                     {
-                        for(int j = 0; j < MainWindow.MyGame.Children.OfType<Malpa>().Count(); j++)
+                        for (int j = 0; j < MainWindow.MyGame.Children.OfType<Malpa>().Count(); j++)
                         {
                             Malpa malpa = MainWindow.MyGame.Children.OfType<Malpa>().ElementAt(j);
                             if(CheckColision(Bullet, malpa))
                             {
-                                if (Target.CzyZyje) Target.ZadajObrazenia(Damage);
+                                if (malpa.CzyZyje) malpa.ZadajObrazenia(Damage);
                                 Log.Tekst += "trafiono \n";
                             }
                         }
+                        BulletList[i].Malpa = null;
+                        continue;
                     }
                     //MessageBox.Show("Trafiono");
                     DeleteBullet(i);
@@ -93,18 +100,19 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size,int Damage,bool isExposive, bool isZolty, int StartingDistance = 0)
+        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size,int Damage,bool isExposive, bool isZolty, ImageBrush image, int StartingDistance = 0)
         {
             Rectangle bullet = new Rectangle
             {
                 Width = Size,
                 Height = Size,
-                Fill = Brushes.Aquamarine
+                Fill = image,
             };
             //BulletList.Add(bullet);
             //TargetList.Add(target);
             Panel.SetZIndex(bullet, 2);
-            BulletList.Add(new Bullets { 
+            BulletList.Add(new Bullets
+            {
                 Bullet = bullet,
                 Malpa = Target,
                 Lifetime = 0,
@@ -112,7 +120,6 @@ namespace monkeyTowerDefenceTD7
                 Dmg = Damage,
                 isExplosive = isExposive,
                 isZolty = isZolty,
-                
             });
 
             Canvas.SetLeft(bullet, StartPoint.X - bullet.Width / 2);
@@ -146,6 +153,8 @@ namespace monkeyTowerDefenceTD7
 
         private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2)
         {
+            if (point1 == null || point2 == null) { return false; }
+
             int Smaller = 1; // Says how much smaler is the hitbox acording to the bullet sice (eg. 2 is 2 times smaller)
 
             //var x1 = Canvas.GetLeft(point1) + (point1.ActualWidth / (Smaller * 2));
@@ -172,6 +181,8 @@ namespace monkeyTowerDefenceTD7
 
         private static double CalculateAngle(FrameworkElement point1, FrameworkElement point2)
         {
+            if (point1 == null || point2 == null) { return 0; }
+
             double x1 = Canvas.GetLeft(point1) + point1.ActualWidth / 2;
             double y1 = Canvas.GetTop(point1) + point1.ActualHeight / 2;
             double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;

@@ -32,6 +32,8 @@ namespace monkeyTowerDefenceTD7
         int Dmg;
         bool isExplosive = false;
         bool isZolty = false;
+        ImageBrush Bulletimage = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"))};
+        Rectangle Ballon;
 
 
         public Bronie(){
@@ -82,7 +84,12 @@ namespace monkeyTowerDefenceTD7
                     bron.RenderTransform = rotation;
                     if (Recharged)
                     {
-                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, StartingDistance);
+                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, Bulletimage, StartingDistance);
+                        if(isExplosive)
+                        {
+                            MainWindow.MyGame.Children.Remove(Ballon);
+                            MainWindow.MyGame.Children.Remove(bron);
+                        }
                         if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
                         {
                             Recharged = false;
@@ -93,20 +100,21 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        public void StworzBron(int idBroni, Point BalonPosition)
+        public void StworzBron(Rectangle Balon, int idBroni, Point BalonPosition)
         {
+            Ballon = Balon;
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (4) // id jest domyślnie a do testowania wstawić np. 10
+            switch (id) // id jest domyślnie a do testowania wstawić np. 10
             {
                 case 0: // Czerwony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds((double)2.5);
                     Range = 500;
                     LifetimeLimit = 5;
-                    Size = 10;
+                    Size = 100;
                     Dmg = 20;
-                    
+                    Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskCzerwony.png"));
                     break;
                 case 1: // Niebieski
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/dzida.png"));
@@ -119,17 +127,18 @@ namespace monkeyTowerDefenceTD7
                     break;
                 case 2: // Brązowy (wybuchająca)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(1);
-                    Range = 200;
-                    LifetimeLimit = 0.01;
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(36000);
+                    Range = 100;
+                    LifetimeLimit = (double)0.5;
                     Size = 200;
                     Dmg = 50;
                     isExplosive = true;
+                    Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/megumin.png"));
                     break;
                 case 3: // Czarny (nic nie robi)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(3600);
-                    Range = 500;
+                    Range = 0;
                     LifetimeLimit = 5;
                     Size = 10;
                     Dmg = 0;
@@ -142,6 +151,7 @@ namespace monkeyTowerDefenceTD7
                     Size = 15;
                     Dmg = 0;
                     isZolty = true;
+                    Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskZolty.png"));
                     break;
                 case 5: // Zielony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/dmuh.png"));
@@ -150,6 +160,7 @@ namespace monkeyTowerDefenceTD7
                     LifetimeLimit = 5;
                     Size = 10;
                     Dmg = 10;
+                    Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskZielony.png"));
                     break;
                 default: // Default (testowanie)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/BronPlaceholder.png"));

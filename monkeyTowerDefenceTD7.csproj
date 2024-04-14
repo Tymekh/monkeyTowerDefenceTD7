@@ -16,6 +16,10 @@
     <None Remove="img\Balony\Czerwony\CzerwonyBalon.png" />
     <None Remove="img\Balony\Czerwony\luke.png" />
     <None Remove="img\Balony\invisible.png" />
+    <None Remove="img\Bullets\megumin.png" />
+    <None Remove="img\Bullets\pociskCzerwony.png" />
+    <None Remove="img\Bullets\pociskZielony.png" />
+    <None Remove="img\Bullets\pociskZolty.png" />
     <None Remove="img\BronPlaceholder.png" />
     <None Remove="img\GAC.png" />
     <None Remove="img\Gore\Gore1.png" />
@@ -83,6 +87,18 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Balony\invisible.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Bullets\pociskZielony.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Bullets\megumin.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Bullets\pociskZolty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Bullets\pociskCzerwony.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\BronPlaceholder.png">
