@@ -17,7 +17,7 @@
                 <ImageBrush ImageSource="/img/SciezkaZdrowia.png" />
             </Canvas.Background>
             <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
-            <Polyline Points="0 900, 648 900, 648 180, 170 180, 170 660, 1127 660, 1127 180, 890 180, 890 900, 1367 900, 1367 180, 1586 180" Stroke="Transparent" x:Name="Sciezka" Stretch="Fill"/>
+            <Polyline Points="-50 900, 648 900, 648 180, 170 180, 170 660, 1127 660, 1127 180, 890 180, 890 900, 1367 900, 1367 180, 1586 180" Stroke="Transparent" x:Name="Sciezka" Stretch="Fill"/>
         </Canvas>
         <Grid Grid.Column="1" Panel.ZIndex="30">
             <Grid.Background>
@@ -37,10 +37,53 @@
                     <Image Source="/img/SerC.png" Width="50" Margin="20"/>
                     <TextBlock Margin="0 20 20 20" x:Name="ZycieText" FontSize="50" Foreground="White" FontWeight="Bold">100</TextBlock>
                 </StackPanel>
-                <Button Click="Button_Click" Width="100" Height="100" HorizontalAlignment="Right" Grid.Row="0" Margin="0 10 10 10">
+                <Button Click="Button_Click" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}">
                     <Button.Content>
                         <Image Source="/img/xxx.png" />
                     </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Green"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Click="Button_Click2" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 65 0" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <Button.Content>
+                        <Image Source="/img/yyy.png" />
+                    </Button.Content>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Green"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
                 </Button>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <Image Source="/img/Gore/Gore2.png" Width="50" Margin="20"/>

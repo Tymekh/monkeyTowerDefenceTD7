@@ -66,7 +66,7 @@ namespace monkeyTowerDefenceTD7
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
             SpawnMalpka(new Random().Next(0, 8));
-            //SpawnMalpka(4);
+            //SpawnMalpka(3);
         }
 
         void SpawnMalpka(int id)
@@ -76,7 +76,7 @@ namespace monkeyTowerDefenceTD7
                 Width = 100,
                 Height = 100
             };
-            Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width);
+            Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
             Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
             MyGame.Children.Add(malpa);
         }
@@ -115,7 +115,15 @@ namespace monkeyTowerDefenceTD7
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (MessageBox.Show("Czy na pewno chcesz wyjść z gry?", 
+                "Potwierdź wyjście z gry.",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.None) == MessageBoxResult.Yes) Application.Current.Shutdown();
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
         }
     }
 }
