@@ -43,7 +43,6 @@ namespace monkeyTowerDefenceTD7
             //WindowState = WindowState.Maximized;
             // /\/\/\ ODKOMENTOWAĆ NA KOŃCU!!!!! /\/\/\
 
-            //TimerStart();
             AktualizujWarotsci();
             MalpkiStart();
             //ShowLog(); // Do wyświetlania dziwnych wartości
@@ -57,26 +56,15 @@ namespace monkeyTowerDefenceTD7
             SecondWindow.Show();
         }
 
-        //private void TimerStart()
-        //{
-        //    DispatcherTimer timer = new DispatcherTimer();
-        //    timer.Tick += Timer_Tick;
-        //    timer.Interval = TimeSpan.FromSeconds((double)1 / 30);
-        //    timer.Start();
-        //}
-
         private void LeftClick(object sender, MouseButtonEventArgs e)
         {
             Random rand = new Random();
             Point position = e.GetPosition(MyGame);
-            //Balony balony = new Balony();
             Balony.CreateBalon(rand.Next(0,6), position);
         }
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            //Point position = e.GetPosition(MyGame);
-
             SpawnMalpka(new Random().Next(0, 8));
             //SpawnMalpka(4);
         }
@@ -123,6 +111,11 @@ namespace monkeyTowerDefenceTD7
             TextPieniadze.Text = Pieniadze.ToString();
             TextZycie.Text = Zycie.ToString();
             TextDlug.Text = $"{DlugPoczatkowy - Dlug}/{DlugPoczatkowy}";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

@@ -60,6 +60,7 @@
     <None Remove="img\PlanszaPlaceholder.png" />
     <None Remove="img\SciezkaZdrowia.png" />
     <None Remove="img\serC.png" />
+    <None Remove="img\xxx.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -211,6 +212,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\serC.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\xxx.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -152,7 +152,6 @@ namespace monkeyTowerDefenceTD7
             {
                 MainWindow.Zycie -= Obrazenia;
                 MainWindow.AktualizujWarotsci();
-                //MessageBox.Show(MainWindow.Zycie.ToString());
                 MainWindow.MyGame.Children.Remove(this);
             }
         }
