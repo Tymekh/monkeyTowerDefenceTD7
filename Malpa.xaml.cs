@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,21 +22,26 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class Malpa : UserControl
     {
-        public int Zycie = 10;
-        public int Pozycja = 0;
-        public int Predkosc = 5;
-        public int Wartosc = 10;
-        public int Obrazenia = 1;
+        private int Zycie = 10;
+        private int Pozycja = 0;
+        private int Predkosc = 5;
+        private int Wartosc = 10;
+        private int Obrazenia = 1;
 
+        private int idMalpy = 0;
+
+        public bool CzyZyje = true;
         public Malpa(int id)
         {
             InitializeComponent();
-            UstawWlasciwosci(id);
+            idMalpy = id;
+            Panel.SetZIndex(this, 2);
+            UstawWlasciwosci();
         }
 
-        private void UstawWlasciwosci(int id)
+        private void UstawWlasciwosci()
         {
-            switch (id)
+            switch (idMalpy)
             {
                 case 0:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
@@ -48,48 +54,58 @@ namespace monkeyTowerDefenceTD7
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Albinos.png"));
                     Wartosc = 10;
                     Predkosc = 5;
+                    Zycie = 30;
 
                     break;
                 case 2:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Czarnuch.png"));
                     Wartosc = 1;
                     Predkosc = 8;
+                    Zycie = 5;
 
                     break;
                 case 3:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Matka.png"));
                     Wartosc = 20;
                     Predkosc = 2;
+                    Zycie = 50;
 
                     break;
                 case 4:
+                    Obrazek.Width = 50;
+                    Obrazek.Height = 50;
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
                     Wartosc = 5;
                     Predkosc = 10;
+                    Zycie = 1;
 
                     break;
                 case 5:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
                     Wartosc = 15;
                     Predkosc = 3;
+                    Zycie = 80;
 
                     break;
                 case 6:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Zbroja.png"));
                     Wartosc = 20;
                     Predkosc = 2;
+                    Zycie = 120;
 
                     break;
                 case 7:
                     Obrazek.Source = new BitmapImage(new Uri($@"pack://application:,,/img/Maupy/Mutanty/Maupa_Mutant0{new Random().Next(1, 9)}.png"));
                     Wartosc = new Random().Next(1, 41);   
                     Predkosc = new Random().Next(1, 8);
+                    Zycie = new Random().Next(1, 81);
 
                     break;
                 default:
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
                     Wartosc = 10;
                     Predkosc = 5;
+                    Zycie = 10;
 
                     break;
             }
@@ -139,6 +155,52 @@ namespace monkeyTowerDefenceTD7
                 //MessageBox.Show(MainWindow.Zycie.ToString());
                 MainWindow.MyGame.Children.Remove(this);
             }
+        }
+
+        public void ZadajObrazenia(int Obrazenia)
+        {   
+            if (Obrazenia < Zycie)
+            {   
+                Zycie -= Obrazenia;
+                if (idMalpy == 6 && Zycie <= 80)
+                {
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
+                    Predkosc = 3;
+                    idMalpy = 5;
+                }
+                if (idMalpy == 5 && Zycie <= 10)
+                {
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
+                    Predkosc = 5;
+                    idMalpy = 0;
+                }
+                return;
+            }
+            MainWindow.Pieniadze += Wartosc;
+            MainWindow.AktualizujWarotsci();
+            ZabijSie();
+        }
+
+        public void ZabijSie()
+        {
+            Rectangle Gore = new Rectangle()
+            {
+                Width = 50,
+                Height = 50,
+                Fill = new ImageBrush()
+                {
+                    ImageSource = new BitmapImage(new Uri($@"pack://application:,,/img/Gore/Gore{new Random().Next(1, 17)}.png"))
+                }
+            };
+            CzyZyje = false;
+            Panel.SetZIndex(Gore, 1);
+            RotateTransform rotation = new RotateTransform(new Random().Next(0, 360) * 180 / Math.PI);
+            Gore.RenderTransformOrigin = new Point(0.5, 0.5);
+            Gore.RenderTransform = rotation;
+            Canvas.SetTop(Gore, Canvas.GetTop(this) + ActualWidth / 4 + new Random().Next(-20, 20));
+            Canvas.SetLeft(Gore, Canvas.GetLeft(this) + ActualWidth / 4 + new Random().Next(-20, 20));
+            MainWindow.MyGame.Children.Add(Gore);
+            MainWindow.MyGame.Children.Remove(this);
         }
     }
 }

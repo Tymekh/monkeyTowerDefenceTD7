@@ -57,6 +57,7 @@ namespace monkeyTowerDefenceTD7
                 {
                     //MessageBox.Show("Trafiono");
                     //Target.Zycie -= Obrazenia; <<<<<<<<<<
+                    if (Target.CzyZyje) Target.ZadajObrazenia(7);
                     DeleteBullet(i);
                     continue;
                 }

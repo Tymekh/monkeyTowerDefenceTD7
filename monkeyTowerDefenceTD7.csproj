@@ -17,9 +17,24 @@
     <None Remove="img\Balony\Czerwony\luke.png" />
     <None Remove="img\Balony\invisible.png" />
     <None Remove="img\BronPlaceholder.png" />
-    <None Remove="img\Gore\Gore01.png" />
-    <None Remove="img\Gore\Gore02.png" />
-    <None Remove="img\Gore\Gore03.png" />
+    <None Remove="img\GAC.png" />
+    <None Remove="img\Gore\Gore1.png" />
+    <None Remove="img\Gore\Gore10.png" />
+    <None Remove="img\Gore\Gore11.png" />
+    <None Remove="img\Gore\Gore12.png" />
+    <None Remove="img\Gore\Gore13.png" />
+    <None Remove="img\Gore\Gore14.png" />
+    <None Remove="img\Gore\Gore15.png" />
+    <None Remove="img\Gore\Gore16.png" />
+    <None Remove="img\Gore\Gore2.png" />
+    <None Remove="img\Gore\Gore3.png" />
+    <None Remove="img\Gore\Gore4.png" />
+    <None Remove="img\Gore\Gore5.png" />
+    <None Remove="img\Gore\Gore6.png" />
+    <None Remove="img\Gore\Gore7.png" />
+    <None Remove="img\Gore\Gore8.png" />
+    <None Remove="img\Gore\Gore9.png" />
+    <None Remove="img\Gore\szafa.png" />
     <None Remove="img\Maupy\Maupa-Matka.png" />
     <None Remove="img\Maupy\Maupa.png" />
     <None Remove="img\Maupy\Maupa_Albinos.png" />
@@ -43,6 +58,8 @@
     <None Remove="img\Balony\Zolty\petarda.png" />
     <None Remove="img\Balony\Zolty\ZoltyBalon.png" />
     <None Remove="img\PlanszaPlaceholder.png" />
+    <None Remove="img\SciezkaZdrowia.png" />
+    <None Remove="img\serC.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -70,13 +87,58 @@
     <Resource Include="img\BronPlaceholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Gore\Gore01.png">
+    <Resource Include="img\GAC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Gore\Gore02.png">
+    <Resource Include="img\Gore\Gore1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Gore\Gore03.png">
+    <Resource Include="img\Gore\Gore10.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore11.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore12.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore13.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore14.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore15.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore3.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore4.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore5.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore6.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore7.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore8.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\Gore9.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\Gore\szafa.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Maupy\Maupa.png">
@@ -143,6 +205,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\PlanszaPlaceholder.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\SciezkaZdrowia.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\serC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

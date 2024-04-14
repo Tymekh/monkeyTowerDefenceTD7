@@ -40,7 +40,6 @@ namespace monkeyTowerDefenceTD7
 
 
             // \/\/\/ ODKOMENTOWAĆ NA KOŃCU!!!!! \/\/\/
-            //WindowStyle = WindowStyle.None;
             //WindowState = WindowState.Maximized;
             // /\/\/\ ODKOMENTOWAĆ NA KOŃCU!!!!! /\/\/\
 
@@ -79,7 +78,7 @@ namespace monkeyTowerDefenceTD7
             //Point position = e.GetPosition(MyGame);
 
             SpawnMalpka(new Random().Next(0, 8));
-            //SpawnMalpka(7);
+            //SpawnMalpka(4);
         }
 
         void SpawnMalpka(int id)
@@ -89,8 +88,8 @@ namespace monkeyTowerDefenceTD7
                 Width = 100,
                 Height = 100
             };
-            Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
-            Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height);
+            Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width);
+            Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
             MyGame.Children.Add(malpa);
         }
 
