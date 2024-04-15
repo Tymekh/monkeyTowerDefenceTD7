@@ -14,7 +14,7 @@
 
         <Canvas x:Name="MyCanvas" Focusable="True"  MouseLeftButtonDown="LeftClick" MouseRightButtonDown="RightClick" Grid.Column="0">
             <Canvas.Background>
-                <ImageBrush ImageSource="/img/SciezkaZdrowia.png" />
+                <ImageBrush ImageSource="/img/ElementyUi/SciezkaZdrowia.png" />
             </Canvas.Background>
             <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
             <Polyline Points="-50 900, 648 900, 648 180, 170 180, 170 660, 1127 660, 1127 180, 890 180, 890 900, 1367 900, 1367 180, 1586 180" Stroke="Transparent" x:Name="Sciezka" Stretch="Fill"/>
@@ -34,12 +34,12 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <Image Source="/img/SerC.png" Width="50" Margin="20"/>
+                    <Image Source="/img/ElementyUi/SerC.png" Width="50" Margin="20"/>
                     <TextBlock Margin="0 20 20 20" x:Name="ZycieText" FontSize="50" Foreground="White" FontWeight="Bold">100</TextBlock>
                 </StackPanel>
                 <!--<Button Click="Button_Click" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}">
                     <Button.Content>
-                        <Image Source="/img/xxx.png" />
+                        <Image Source="/img/ElementyUi/xxx.png.png" />
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -63,7 +63,7 @@
                 </Button>-->
                 <!--<Button Click="Button_Click2" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 65 0" Background="{x:Null}" BorderBrush="{x:Null}">
                     <Button.Content>
-                        <Image Source="/img/yyy.png" />
+                        <Image Source="/img/ElementyUi/yyy.png" />
                     </Button.Content>
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -91,10 +91,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Image x:Name="ButtonImage" Source="/img/xxx.png"/>
+                                        <Image x:Name="ButtonImage" Source="/img/ElementyUi/xxx.png"/>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/xxxx.png"/>
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUi/xxxx.png"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -109,10 +109,10 @@
                             <Setter Property="Template">
                                 <Setter.Value>
                                     <ControlTemplate TargetType="Button">
-                                        <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                        <Image x:Name="ButtonImage" Source="/img/ElementyUi/yyy.png"/>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUi/yyyy.png"/>
                                             </Trigger>
                                         </ControlTemplate.Triggers>
                                     </ControlTemplate>
@@ -128,10 +128,10 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
-                                            <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                            <Image x:Name="ButtonImage" Source="/img/ElementyUi/yyy.png"/>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                                    <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUi/yyyy.png"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>
@@ -143,7 +143,7 @@
                     <TextBlock Margin="0 25 20 25" x:Name="DlugText" Grid.Row="1" FontSize="45" Foreground="White" FontWeight="Bold">0/10000</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
-                    <Image Source="/img/GAC.png" Width="50" Margin="20"/>
+                    <Image Source="/img/ElementyUi/GAC.png" Width="50" Margin="20"/>
                     <TextBlock Margin="0 20 20 20" x:Name="PieniadzeText" Grid.Row="2" FontSize="50" Foreground="White" FontWeight="Bold">100</TextBlock>
                 </StackPanel>
             </Grid>

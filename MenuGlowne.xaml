@@ -18,10 +18,10 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Image x:Name="ButtonImage" Source="/img/xxx.png"/>
+                                <Image x:Name="ButtonImage" Source="/img/ElementyUI/xxx.png"/>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/xxxx.png"/>
+                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUI/xxxx.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
@@ -36,10 +36,10 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
-                                <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                <Image x:Name="ButtonImage" Source="/img/ElementyUi/yyy.png"/>
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUi/yyyy.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
