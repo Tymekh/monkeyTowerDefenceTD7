@@ -112,7 +112,7 @@ namespace monkeyTowerDefenceTD7
                     RechargeTimer.Interval = TimeSpan.FromSeconds((double)2.5);
                     Range = 500;
                     LifetimeLimit = 5;
-                    Size = 100;
+                    Size = 50;
                     Dmg = 20;
                     Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskCzerwony.png"));
                     break;
@@ -137,7 +137,7 @@ namespace monkeyTowerDefenceTD7
                     break;
                 case 3: // Czarny (nic nie robi)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(3600);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(36000);
                     Range = 0;
                     LifetimeLimit = 5;
                     Size = 10;
@@ -148,7 +148,7 @@ namespace monkeyTowerDefenceTD7
                     RechargeTimer.Interval = TimeSpan.FromSeconds(2);
                     Range = 200;
                     LifetimeLimit = 5;
-                    Size = 15;
+                    Size = 30;
                     Dmg = 0;
                     isZolty = true;
                     Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskZolty.png"));
@@ -158,7 +158,7 @@ namespace monkeyTowerDefenceTD7
                     RechargeTimer.Interval = TimeSpan.FromSeconds((double)1.5);
                     Range = 500;
                     LifetimeLimit = 5;
-                    Size = 10;
+                    Size = 15;
                     Dmg = 10;
                     Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskZielony.png"));
                     break;
