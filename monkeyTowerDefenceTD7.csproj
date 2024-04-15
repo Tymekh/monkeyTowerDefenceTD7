@@ -90,8 +90,8 @@
 
   <ItemGroup>
     <Content Include="img\ConceptArt.png" />
-    <Content Include="img\zzz.png" />
-    <Content Include="img\zzzz.png" />
+    <Content Include="img\ElementyUI\zzz.png" />
+    <Content Include="img\ElementyUI\zzzz.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -137,7 +137,7 @@
     <Resource Include="img\BronPlaceholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\GAC.png">
+    <Resource Include="img\ElementyUI\GAC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Gore\Gore1.png">
@@ -257,10 +257,10 @@
     <Resource Include="img\PlanszaPlaceholder.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\SciezkaZdrowia.png">
+    <Resource Include="img\ElementyUI\SciezkaZdrowia.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\serC.png">
+    <Resource Include="img\ElementyUI\serC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborBrazowy1.png">
@@ -299,16 +299,16 @@
     <Resource Include="img\Wybieranie\wyborZolty2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\xxx.png">
+    <Resource Include="img\ElementyUI\xxx.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\xxxx.png">
+    <Resource Include="img\ElementyUI\xxxx.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\yyy.png">
+    <Resource Include="img\ElementyUI\yyy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\yyyy.png">
+    <Resource Include="img\ElementyUI\yyyy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
