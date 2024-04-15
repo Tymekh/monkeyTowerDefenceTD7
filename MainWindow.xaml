@@ -128,10 +128,10 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
-                                            <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                            <Image x:Name="ButtonImage" Source="/img/zzz.png"/>
                                             <ControlTemplate.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                                    <Setter TargetName="ButtonImage" Property="Source" Value="/img/zzzz.png"/>
                                                 </Trigger>
                                             </ControlTemplate.Triggers>
                                         </ControlTemplate>

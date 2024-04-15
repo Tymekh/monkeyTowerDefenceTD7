@@ -86,6 +86,8 @@
     <None Remove="img\xxxx.png" />
     <None Remove="img\yyy.png" />
     <None Remove="img\yyyy.png" />
+	<None Remove="img\zzz.png" />
+	<None Remove="img\zzzz.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -305,7 +307,12 @@
     <Resource Include="img\yyyy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-
+	<Resource Include="img\zzz.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Resource>
+	<Resource Include="img\zzzz.png">
+	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Resource>
   </ItemGroup>
 
 </Project>
