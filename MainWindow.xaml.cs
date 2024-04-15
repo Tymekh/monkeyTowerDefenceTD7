@@ -18,15 +18,15 @@ namespace monkeyTowerDefenceTD7
     public partial class MainWindow : Window
     {
         // Zmienić \/\/\/
-        static readonly int DlugPoczatkowy = 1000;
+        static readonly int DlugPoczatkowy = 10000;
 
         public static Canvas MyGame;
         public static TextBlock TextPieniadze;
         public static TextBlock TextZycie;
         public static TextBlock TextDlug;
-        public static int Pieniadze = 100;
+        public static int Pieniadze = 20000;
         public static int Zycie = 100;
-        public static int Dlug = 1000;
+        public static int Dlug = 10000;
         private static int NumerFali = 0;
         public static int WybranyBalon;
         public static bool WyborAktywny = false;
@@ -43,7 +43,6 @@ namespace monkeyTowerDefenceTD7
             TextDlug = DlugText;
 
             TimerPoczatkowy.Interval = TimeSpan.FromSeconds(20);
-            //TimerPoczatkowy.Interval = TimeSpan.FromSeconds(1);
             TimerMiedzyFalami.Interval = TimeSpan.FromSeconds(20);
             TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(2);
 
@@ -59,7 +58,7 @@ namespace monkeyTowerDefenceTD7
 
             AktualizujWarotsci();
             MalpkiStart();
-            ShowLog(); // Do wyświetlania dziwnych wartości
+            //ShowLog(); // Do wyświetlania dziwnych wartości
         }
 
         private void ShowLog()
@@ -162,6 +161,8 @@ namespace monkeyTowerDefenceTD7
             TextPieniadze.Text = Pieniadze.ToString();
             TextZycie.Text = Zycie.ToString();
             TextDlug.Text = $"{DlugPoczatkowy - Dlug}/{DlugPoczatkowy}";
+
+            if (Zycie <= 0) KoniecGry(false);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -208,8 +209,7 @@ namespace monkeyTowerDefenceTD7
 
         private void TimerMiedzyFalami_Tick(object? sender, EventArgs e)
         {
-            DlugoscFali = new Random().Next(3, 15);
-            //DlugoscFali = 3;
+            DlugoscFali = new Random().Next(10, 15);
             TimerMiedzyFalami.Stop();
             TimerMiedzySpawnami.Start();
         }
@@ -225,9 +225,47 @@ namespace monkeyTowerDefenceTD7
                 TimerMiedzySpawnami.Stop();
                 TimerMiedzyFalami.Start();
                 NumerFali++;
-                MessageBox.Show(NumerFali.ToString());
             }
         }
 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (Pieniadze >= 100)
+            {
+                Pieniadze -= 100;
+                Dlug -= 100;
+                AktualizujWarotsci();
+            }
+            if (Dlug <= 0)
+            {
+                KoniecGry(true);
+            }
+        }
+
+        private static void KoniecGry(bool CzyWygrana)
+        {
+            if (CzyWygrana)
+            {
+                MessageBox.Show("Gratulację, Wygrałeś/aś!!!");
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                MessageBox.Show("Przegrałeś/aś!!!");
+                Application.Current.Shutdown();
+            }
+        }
     }
 }
+//⠀⠀⠀⠀⠀⠀⣖⢤⡀⠀⠀⠀⠀⠀⠀⠀
+//⡐⠣⡄⠀⠀⠀⠑⡄⠙⠆⠀⠀⠀⠀⠀⠀
+//⡇⠘⢄⡄⠂⠉⠀⡀⠀⢸⠀⠀⠀⠀⠀⠀
+//⢃⡐⠁⠀⠀⠀⠀⠀⠀⡼⠆⠀⠀⢀⣴⠂
+//⠀⢁⠀⠀⣠⡀⠀⠀⠀⠀⢸⢀⣴⣿⠏⠀
+//⠀⠈⣿⡄⢹⣿⡄⠀⢀⡀⢠⣿⣿⠏⠀⠀
+//⠀⠀⠈⢇⠀⢉⣥⣾⣿⣷⣿⣿⠏⠀⠀⠀
+//⠀⠀⠀⠀⣽⣿⣿⣿⣿⣿⣿⣯⠱⡀⠀⠀
+//⠀⠀⠀⠀⠙⠋⢻⣿⣿⣿⣿⣿⡄⡇⠀⠀
+//⠀⠀⠀⠀⠀⠘⣼⣿⣿⣿⣿⣿⣷⡇⠀⠀
+//⠀⠀⠀⠀⠀⢠⣿⣿⡿⠛⡿⣿⡇⡇⠀⠀
+//⠀⠀⠀⠀⠠⠟⠋⠀⠈⠂⠌⠺⠇⠀⠀

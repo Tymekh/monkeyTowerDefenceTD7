@@ -122,8 +122,25 @@
                     </Button.Style>
                 </Button>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
-                    <Image Source="/img/Gore/Gore2.png" Width="50" Margin="20"/>
-                    <TextBlock Margin="0 20 20 20" x:Name="DlugText" Grid.Row="1" FontSize="50" Foreground="White" FontWeight="Bold">0/1000</TextBlock>
+                    <Button Width="50" Height="50" Margin="20" Click="Button_Click_1">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Margin="0 25 20 25" x:Name="DlugText" Grid.Row="1" FontSize="45" Foreground="White" FontWeight="Bold">0/10000</TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                     <Image Source="/img/GAC.png" Width="50" Margin="20"/>
