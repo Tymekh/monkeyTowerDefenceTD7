@@ -22,7 +22,7 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class Malpa : UserControl
     {
-        private int Zycie = 10;
+        public int Zycie = 10;
         private int Pozycja = 0;
         private int Predkosc = 5;
         private int Wartosc = 10;
@@ -182,7 +182,9 @@ namespace monkeyTowerDefenceTD7
 
         public void ZabijSie()
         {
-            Rectangle Gore = new Rectangle()
+            CzyZyje = false;
+
+            Rectangle Gore = new()
             {
                 Width = 50,
                 Height = 50,
@@ -191,12 +193,10 @@ namespace monkeyTowerDefenceTD7
                     ImageSource = new BitmapImage(new Uri($@"pack://application:,,/img/Gore/Gore{new Random().Next(1, 17)}.png"))
                 }
             };
-            CzyZyje = false;
-            Panel.SetZIndex(Gore, 1);
 
             if (idMalpy == 3)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = new Random().Next(0, 5); i < 5; i++)
                 {
                     Malpa malpa = new(4)
                     {
@@ -214,6 +214,7 @@ namespace monkeyTowerDefenceTD7
             Gore.RenderTransformOrigin = new Point(0.5, 0.5);
             Gore.RenderTransform = rotation;
 
+            Panel.SetZIndex(Gore, 1);
             Canvas.SetTop(Gore, Canvas.GetTop(this) + ActualWidth / 4 + new Random().Next(-20, 20));
             Canvas.SetLeft(Gore, Canvas.GetLeft(this) + ActualWidth / 4 + new Random().Next(-20, 20));
             MainWindow.MyGame.Children.Add(Gore);

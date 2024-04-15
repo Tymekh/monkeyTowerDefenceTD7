@@ -37,6 +37,7 @@ namespace monkeyTowerDefenceTD7
         }
         private static void BulletTimer_Tick(object? sender, EventArgs e)
         { 
+            List<Malpa> DoZabicia = new();
             for(int i = 0; i < BulletList.Count; i++)
             {
                 Rectangle Bullet = BulletList[i].Bullet;
@@ -80,9 +81,15 @@ namespace monkeyTowerDefenceTD7
                             Malpa malpa = MainWindow.MyGame.Children.OfType<Malpa>().ElementAt(j);
                             if(CheckColision(Bullet, malpa))
                             {
-                                if (malpa.CzyZyje) malpa.ZadajObrazenia(Damage);
+                                //if (malpa.CzyZyje) malpa.ZadajObrazenia(Damage);
+                                if (Damage < malpa.Zycie) malpa.ZadajObrazenia(Damage);
+                                else DoZabicia.Add(malpa);
                                 Log.Tekst += "trafiono \n";
                             }
+                        }
+                        for (int j = 0; j < DoZabicia.Count; j++)
+                        {
+                            DoZabicia[j].ZabijSie();
                         }
                         BulletList[i].Malpa = null;
                         continue;

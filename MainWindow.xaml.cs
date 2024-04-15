@@ -39,6 +39,16 @@ namespace monkeyTowerDefenceTD7
             TextZycie = ZycieText;
             TextDlug = DlugText;
 
+            TimerPoczatkowy.Interval = TimeSpan.FromSeconds(20);
+            //TimerPoczatkowy.Interval = TimeSpan.FromSeconds(1);
+            TimerMiedzyFalami.Interval = TimeSpan.FromSeconds(20);
+            TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(2);
+
+            TimerPoczatkowy.Tick += TimerPoczatkowy_Tick;
+            TimerMiedzyFalami.Tick += TimerMiedzyFalami_Tick;
+            TimerMiedzySpawnami.Tick += TimerMiedzySpawnami_Tick;
+
+            TimerPoczatkowy.Start();
 
 
             // \/\/\/ ODKOMENTOWAĆ NA KOŃCU!!!!! \/\/\/
@@ -70,8 +80,8 @@ namespace monkeyTowerDefenceTD7
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            SpawnMalpka(new Random().Next(0, 8));
-            //SpawnMalpka(3);
+            //SpawnMalpka(new Random().Next(0, 8));
+            SpawnMalpka(6);
         }
 
         void SpawnMalpka(int id)
@@ -95,7 +105,7 @@ namespace monkeyTowerDefenceTD7
                 {
                     Punkty.Add(p);
                 }
-                TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / 15);
+                TimerRuchu.Interval = TimeSpan.FromSeconds((double)1 / 20);
                 TimerRuchu.Tick += TimerRuchu_Tick;
 
                 TimerRuchu.Start();
@@ -105,9 +115,7 @@ namespace monkeyTowerDefenceTD7
         {
             for (int i = 0; i < MyGame.Children.OfType<Malpa>().Count(); i++)
             {
-                Malpa malpa = MyGame.Children.OfType<Malpa>().ElementAt(i);
-
-                malpa.RuchMalpy();
+                MyGame.Children.OfType<Malpa>().ElementAt(i).RuchMalpy();
             }
         }
 
@@ -139,5 +147,40 @@ namespace monkeyTowerDefenceTD7
             WyborAktywny = true;
             Log.Tekst += "wybrano balon: " + WybranyBalon.ToString() + "\n";
         }
+
+        // Spawnowanie Malpek
+
+        static DispatcherTimer TimerPoczatkowy = new();
+        static DispatcherTimer TimerMiedzyFalami = new();
+        static DispatcherTimer TimerMiedzySpawnami = new();
+        int DlugoscFali;
+        private void TimerPoczatkowy_Tick(object? sender, EventArgs e)
+        {
+            TimerPoczatkowy.Stop();
+            TimerMiedzyFalami.Start();
+        }
+
+
+        private void TimerMiedzyFalami_Tick(object? sender, EventArgs e)
+        {
+            DlugoscFali = new Random().Next(3, 15);
+            //DlugoscFali = 3;
+            TimerMiedzyFalami.Stop();
+            TimerMiedzySpawnami.Start();
+        }
+        private void TimerMiedzySpawnami_Tick(object? sender, EventArgs e)
+        {
+            if (DlugoscFali-- > 0)
+            {
+                SpawnMalpka(new Random().Next(1, 8));
+                TimerMiedzySpawnami.Start();
+            }
+            else
+            {
+                TimerMiedzySpawnami.Stop();
+                TimerMiedzyFalami.Start();
+            }
+        }
+
     }
 }
