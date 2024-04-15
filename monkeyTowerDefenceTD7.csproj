@@ -9,12 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+
     <Compile Remove="img\**" />
     <EmbeddedResource Remove="img\**" />
     <None Remove="img\**" />
     <Page Remove="img\**" />
-=======
+
     <None Remove="img\Balony\Brazowy\bomb.png" />
     <None Remove="img\Balony\Brazowy\BrazowyBalon.png" />
     <None Remove="img\Balony\Czarny\CzarnyBalon.png" />
@@ -299,7 +299,7 @@
     <Resource Include="img\yyyy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
->>>>>>> d7ec92c77d2ec36d7b9fe97e07d630651bf2d219
+
   </ItemGroup>
 
 </Project>
