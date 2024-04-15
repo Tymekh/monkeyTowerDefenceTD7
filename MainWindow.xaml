@@ -37,7 +37,7 @@
                     <Image Source="/img/SerC.png" Width="50" Margin="20"/>
                     <TextBlock Margin="0 20 20 20" x:Name="ZycieText" FontSize="50" Foreground="White" FontWeight="Bold">100</TextBlock>
                 </StackPanel>
-                <Button Click="Button_Click" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}">
+                <!--<Button Click="Button_Click" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="{x:Null}" BorderBrush="{x:Null}">
                     <Button.Content>
                         <Image Source="/img/xxx.png" />
                     </Button.Content>
@@ -60,8 +60,8 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
-                </Button>
-                <Button Click="Button_Click2" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 65 0" Background="{x:Null}" BorderBrush="{x:Null}">
+                </Button>-->
+                <!--<Button Click="Button_Click2" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 65 0" Background="{x:Null}" BorderBrush="{x:Null}">
                     <Button.Content>
                         <Image Source="/img/yyy.png" />
                     </Button.Content>
@@ -84,6 +84,42 @@
                             </Style.Triggers>
                         </Style>
                     </Button.Style>
+                </Button>-->
+                <Button Click="Button_Click" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="Transparent" BorderBrush="Transparent">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/xxx.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/xxxx.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Click="Button_Click2" Width="75" Height="75" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 65 0" Background="Transparent" BorderBrush="Transparent">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/yyy.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/yyyy.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
                 <StackPanel Grid.Row="1" Orientation="Horizontal">
                     <Image Source="/img/Gore/Gore2.png" Width="50" Margin="20"/>
@@ -104,23 +140,113 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button Grid.Column="0" Grid.Row="0" Click="SelectBalon" FontSize="1">
-                    <Image Source="/img/Balony/Czerwony/CzerwonyBalon.png"/>
+                <Button Grid.Column="0" Grid.Row="0" Width="153" Height="207" Click="SelectBalon" FontSize="1" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26 21 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborCzerwony1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborCzerwony2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="1" Grid.Row="0" Click="SelectBalon" FontSize="2">
-                    <Image Source="/img/Balony/Niebieski/NiebieskiBalon.png"/>
+                <Button Grid.Column="1" Grid.Row="0" Width="153" Height="207" Click="SelectBalon" FontSize="2" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13 21 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborNiebieski1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborNiebieski2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="0" Grid.Row="1" Click="SelectBalon" FontSize="3">
-                    <Image Source="/img/Balony/Brazowy/BrazowyBalon.png"/>
+                <Button Grid.Column="0" Grid.Row="1" Width="153" Height="207" Click="SelectBalon" FontSize="3" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26 14 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborBrazowy1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborBrazowy2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="1" Grid.Row="1" Click="SelectBalon" FontSize="4">
-                    <Image Source="/img/Balony/Czarny/CzarnyBalon.png"/>
+                <Button Grid.Column="1" Grid.Row="1" Width="153" Height="207" Click="SelectBalon" FontSize="4" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13 14 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborCzarny1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborCzarny2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="0" Grid.Row="2" Click="SelectBalon" FontSize="5">
-                    <Image Source="/img/Balony/Zolty/ZoltyBalon.png"/>
+                <Button Grid.Column="0" Grid.Row="2" Width="153" Height="207" Click="SelectBalon" FontSize="5" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26 7 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborZolty1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborZolty2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
-                <Button Grid.Column="1" Grid.Row="2" Click="SelectBalon" FontSize="6">
-                    <Image Source="/img/Balony/Zielony/ZielonyBalon.png"/>
+                <Button Grid.Column="1" Grid.Row="2" Width="153" Height="207" Click="SelectBalon" FontSize="6" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13 7 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Image x:Name="ButtonImage" Source="/img/Wybieranie/wyborZielony1.png"/>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="ButtonImage" Property="Source" Value="/img/Wybieranie/wyborZielony2.png"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
                 </Button>
             </Grid>
         </Grid>
