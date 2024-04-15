@@ -89,6 +89,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="img\ConceptArt.png" />
+    <Content Include="img\zzz.png" />
+    <Content Include="img\zzzz.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="img\igmage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
