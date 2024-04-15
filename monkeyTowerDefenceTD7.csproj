@@ -89,6 +89,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\igmage.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="img\Balony\Brazowy\bomb.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>

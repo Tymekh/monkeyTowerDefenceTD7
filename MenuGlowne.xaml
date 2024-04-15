@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="MenuGlowne" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
-        <Button Width="150" Height="70" Content="Start" FontSize="50" Margin="0 150 0 0" Click="Button_Click"></Button>
-        <Button Width="150" Height="70" Content="Twórcy" FontSize="45" Margin="0 330 0 0" Click="Tworcy" ></Button>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/igmage.png"></ImageBrush>
+        </Grid.Background>
+        <Button Width="150" Height="70" Content="Start" FontSize="50" Margin="0 360 170 0" Click="Button_Click"></Button>
+        <Button Width="150" Height="70" Content="Twórcy" FontSize="45" Margin="170 360 0 0" Click="Tworcy" ></Button>
         <Button Click="CloseWindow" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="Transparent" BorderBrush="Transparent">
             <Button.Style>
                 <Style TargetType="Button">
