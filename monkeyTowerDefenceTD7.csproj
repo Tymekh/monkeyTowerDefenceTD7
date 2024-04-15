@@ -92,6 +92,15 @@
 
   <ItemGroup>
     <Content Include="img\ConceptArt.png" />
+    <Resource Include="img\ElementyUI\34.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\ElementyUI\3434.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\ElementyUI\MENI.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\ElementyUI\zzz.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
