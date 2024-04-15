@@ -8,9 +8,26 @@
         Title="MenuGlowne" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="img/igmage.png"></ImageBrush>
+            <ImageBrush ImageSource="img/ElementyUI/MENI.png"></ImageBrush>
         </Grid.Background>
-        <Button Width="400" Height="60" Content="Start" FontSize="35" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Click="Button_Click"></Button>
+        <Button Width="400" Height="60" FontSize="35" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Click="Button_Click">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Image x:Name="ButtonImage" Source="/img/ElementyUI/34.png"/>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUI/3434.png"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button Click="CloseWindow" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="Transparent" BorderBrush="Transparent">
             <Button.Style>
                 <Style TargetType="Button">

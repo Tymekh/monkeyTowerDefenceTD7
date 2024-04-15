@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
-        Title="monkeyTowerDefenceTD7" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="ToolWindow">
+        Title="monkeyTowerDefenceTD7" Height="1080" Width="1920" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"></ColumnDefinition>

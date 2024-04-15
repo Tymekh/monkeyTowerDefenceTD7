@@ -24,7 +24,7 @@ namespace monkeyTowerDefenceTD7
         public static TextBlock TextPieniadze;
         public static TextBlock TextZycie;
         public static TextBlock TextDlug;
-        public static int Pieniadze = 20000;
+        public static int Pieniadze = 150;
         public static int Zycie = 100;
         public static int Dlug = 10000;
         private static int NumerFali = 0;
