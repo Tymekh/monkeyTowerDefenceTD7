@@ -29,6 +29,8 @@ namespace monkeyTowerDefenceTD7
         public static int Dlug = 1000;
         public static int WybranyBalon;
         public static bool WyborAktywny = false;
+        private static int NumerFali = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -94,6 +96,40 @@ namespace monkeyTowerDefenceTD7
             Canvas.SetLeft(malpa, Punkty[0].X - malpa.Width / 2);
             Canvas.SetTop(malpa, Punkty[0].Y - malpa.Height / 2);
             MyGame.Children.Add(malpa);
+        }
+
+        private void SpawnZaleznieOdTrudnosci()
+        {
+            Random random = new();
+
+            if (NumerFali >= 18)   // Szansa na pojawienie mutantów od fali 21
+            {
+                SpawnMalpka(random.Next(0, 7));
+            }
+            else if (NumerFali >= 15)   // Szansa na pojawienie impa, gdy poziom trudności jest większy od 20
+            {
+                SpawnMalpka(random.Next(0, 6));
+            }
+            else if (NumerFali >= 12)
+            {
+                SpawnMalpka(random.Next(0, 5));
+            }
+            else if (NumerFali >= 9)
+            {
+                SpawnMalpka(random.Next(0, 4));
+            }
+            else if (NumerFali >= 6)
+            {
+                SpawnMalpka(random.Next(0, 3));
+            }
+            else if (NumerFali >= 3)
+            {
+                SpawnMalpka(random.Next(0, 2));
+            }
+            else
+            {
+                SpawnMalpka(0);
+            }
         }
 
         public static List<Point> Punkty = [];
