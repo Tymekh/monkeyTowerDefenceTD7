@@ -82,8 +82,8 @@ namespace monkeyTowerDefenceTD7
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            //SpawnMalpka(new Random().Next(0, 8));
-            SpawnMalpka(6);
+            SpawnMalpka(new Random().Next(0, 8));
+            //SpawnMalpka(6);
         }
 
         void SpawnMalpka(int id)
@@ -102,31 +102,31 @@ namespace monkeyTowerDefenceTD7
         {
             Random random = new();
 
-            if (NumerFali >= 18)   // Szansa na pojawienie mutantów od fali 21
+            if (NumerFali >= 18)   // Szansa na pojawienie mutantów od fali 18
             {
                 SpawnMalpka(random.Next(0, 7));
             }
-            else if (NumerFali >= 15)   // Szansa na pojawienie impa, gdy poziom trudności jest większy od 20
+            else if (NumerFali >= 15)   // Szansa na pojawienie małp w zbroi od fali 15
             {
                 SpawnMalpka(random.Next(0, 6));
             }
-            else if (NumerFali >= 12)
+            else if (NumerFali >= 12)   // Szansa na pojawienie małp matek od fali 12
             {
                 SpawnMalpka(random.Next(0, 5));
             }
-            else if (NumerFali >= 9)
+            else if (NumerFali >= 9)   // Szansa na pojawienie małp z hełmem od fali 9
             {
                 SpawnMalpka(random.Next(0, 4));
             }
-            else if (NumerFali >= 6)
+            else if (NumerFali >= 6)   // Szansa na pojawienie czarnych malp od fali 6
             {
                 SpawnMalpka(random.Next(0, 3));
             }
-            else if (NumerFali >= 3)
+            else if (NumerFali >= 3)   // Szansa na pojawienie małp albinosów od fali 3
             {
                 SpawnMalpka(random.Next(0, 2));
             }
-            else
+            else   // Pojawianie tylko zwykłych małp na pierwszych kilku falach
             {
                 SpawnMalpka(0);
             }
@@ -208,13 +208,15 @@ namespace monkeyTowerDefenceTD7
         {
             if (DlugoscFali-- > 0)
             {
-                SpawnMalpka(new Random().Next(1, 8));
+                SpawnZaleznieOdTrudnosci();
                 TimerMiedzySpawnami.Start();
             }
             else
             {
                 TimerMiedzySpawnami.Stop();
                 TimerMiedzyFalami.Start();
+                NumerFali++;
+                MessageBox.Show(NumerFali.ToString());
             }
         }
 

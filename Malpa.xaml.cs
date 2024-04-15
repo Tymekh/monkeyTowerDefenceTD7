@@ -64,27 +64,18 @@ namespace monkeyTowerDefenceTD7
                     Zycie = 5;
 
                     break;
-                case 3: // Małpa matka
-                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Matka.png"));
-                    Wartosc = 20;
-                    Predkosc = 2;
-                    Zycie = 50;
-
-                    break;
-                case 7: // Małpa dziecko
-                    Obrazek.Width = 50;
-                    Obrazek.Height = 50;
-                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
-                    Wartosc = 5;
-                    Predkosc = new Random().Next(9, 11);
-                    Zycie = 1;
-
-                    break;
-                case 4: // Małpa z hełmem
+                case 3: // Małpa z hełmem
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
                     Wartosc = 15;
                     Predkosc = 3;
                     Zycie = 80;
+
+                    break;
+                case 4: // Małpa matka
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Matka.png"));
+                    Wartosc = 20;
+                    Predkosc = 2;
+                    Zycie = 50;
 
                     break;
                 case 5: // Małpa w zbroi
@@ -99,6 +90,15 @@ namespace monkeyTowerDefenceTD7
                     Wartosc = new Random().Next(1, 41);   
                     Predkosc = new Random().Next(1, 8);
                     Zycie = new Random().Next(1, 81);
+
+                    break;
+                case 7: // Małpa dziecko
+                    Obrazek.Width = 50;
+                    Obrazek.Height = 50;
+                    Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
+                    Wartosc = 5;
+                    Predkosc = new Random().Next(9, 11);
+                    Zycie = 1;
 
                     break;
                 default:
@@ -161,13 +161,13 @@ namespace monkeyTowerDefenceTD7
             if (Obrazenia < Zycie)
             {   
                 Zycie -= Obrazenia;
-                if (idMalpy == 6 && Zycie <= 80)
+                if (idMalpy == 5 && Zycie <= 80)
                 {
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
                     Predkosc = 3;
-                    idMalpy = 5;
+                    idMalpy = 3;
                 }
-                if (idMalpy == 5 && Zycie <= 10)
+                if (idMalpy == 3 && Zycie <= 10)
                 {
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
                     Predkosc = 5;
@@ -194,11 +194,11 @@ namespace monkeyTowerDefenceTD7
                 }
             };
 
-            if (idMalpy == 3)
+            if (idMalpy == 4)
             {
                 for (int i = new Random().Next(0, 5); i < 5; i++)
                 {
-                    Malpa malpa = new(4)
+                    Malpa malpa = new(7)
                     {
                         Width = 100,
                         Height = 100
