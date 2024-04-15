@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
-        Title="MenuGlowne" Height="450" Width="800">
+        Title="MenuGlowne" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
         <Button Width="150" Height="70" Content="Start" FontSize="50" Margin="0 150 0 0" Click="Button_Click"></Button>
         <Button Width="150" Height="70" Content="Twórcy" FontSize="45" Margin="0 330 0 0" Click="Tworcy" ></Button>
