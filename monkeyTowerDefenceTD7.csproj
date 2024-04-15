@@ -92,8 +92,12 @@
 
   <ItemGroup>
     <Content Include="img\ConceptArt.png" />
-    <Content Include="img\ElementyUI\zzz.png" />
-    <Content Include="img\ElementyUI\zzzz.png" />
+    <Resource Include="img\ElementyUI\zzz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\ElementyUI\zzzz.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -313,12 +317,6 @@
     <Resource Include="img\ElementyUI\yyyy.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-	<Resource Include="img\zzz.png">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Resource>
-	<Resource Include="img\zzzz.png">
-	  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	</Resource>
   </ItemGroup>
 
 </Project>
