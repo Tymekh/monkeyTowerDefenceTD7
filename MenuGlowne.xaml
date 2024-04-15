@@ -5,13 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
         mc:Ignorable="d"
-        Title="MenuGlowne" Height="450" Width="800">
+        Title="MenuGlowne" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="img/igmage.png"></ImageBrush>
         </Grid.Background>
-        <Button Width="150" Height="70" Content="Start" FontSize="50" Margin="0 360 170 0" Click="Button_Click"></Button>
-        <Button Width="150" Height="70" Content="Twórcy" FontSize="45" Margin="170 360 0 0" Click="Tworcy" ></Button>
+        <Button Width="400" Height="60" Content="Start" FontSize="35" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="10" Click="Button_Click"></Button>
         <Button Click="CloseWindow" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0" Background="Transparent" BorderBrush="Transparent">
             <Button.Style>
                 <Style TargetType="Button">
@@ -22,24 +21,6 @@
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUI/xxxx.png"/>
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </Button.Style>
-        </Button>
-        <Button Click="MinimiseWindow" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="0" Margin="0 0 50 0" Background="Transparent" BorderBrush="Transparent">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="Button">
-                                <Image x:Name="ButtonImage" Source="/img/ElementyUi/yyy.png"/>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="ButtonImage" Property="Source" Value="/img/ElementyUi/yyyy.png"/>
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

@@ -43,7 +43,7 @@ namespace monkeyTowerDefenceTD7
 
         private void Tworcy(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Programiści:\n- T.D\n- A.B\n\nGraficy:\n- T.N\n- M.M");
+            MessageBox.Show("Programiści:\n- TD\n- AB\n\nGraficy:\n- TN\n- MM", "Twórcy");
         }
     }
 }
