@@ -48,6 +48,11 @@ namespace monkeyTowerDefenceTD7
                 if (Target != null)
                 {
                     double Angle = CalculateAngle(Bullet, Target);
+                    double ReverseAngle = CalculateAngle(Target, Bullet);
+
+                    RotateTransform rotation = new RotateTransform(ReverseAngle * 180 / Math.PI);
+                    Bullet.RenderTransformOrigin = new Point(0.5, 0.5);
+                    Bullet.RenderTransform = rotation;
 
                     //Log.Tekst += Angle.ToString() + "\n";
 

@@ -64,22 +64,16 @@
     <None Remove="img\PlanszaPlaceholder.png" />
     <None Remove="img\SciezkaZdrowia.png" />
     <None Remove="img\serC.png" />
-    <None Remove="img\Wybieranie\wyborBrazowy.png" />
     <None Remove="img\Wybieranie\wyborBrazowy1.png" />
     <None Remove="img\Wybieranie\wyborBrazowy2.png" />
-    <None Remove="img\Wybieranie\wyborCzarny.png" />
     <None Remove="img\Wybieranie\wyborCzarny1.png" />
     <None Remove="img\Wybieranie\wyborCzarny2.png" />
-    <None Remove="img\Wybieranie\wyborCzerwony.png" />
     <None Remove="img\Wybieranie\wyborCzerwony1.png" />
     <None Remove="img\Wybieranie\wyborCzerwony2.png" />
-    <None Remove="img\Wybieranie\wyborNiebieski.png" />
     <None Remove="img\Wybieranie\wyborNiebieski1.png" />
     <None Remove="img\Wybieranie\wyborNiebieski2.png" />
-    <None Remove="img\Wybieranie\wyborZielony.png" />
     <None Remove="img\Wybieranie\wyborZielony1.png" />
     <None Remove="img\Wybieranie\wyborZielony2.png" />
-    <None Remove="img\Wybieranie\wyborZolty.png" />
     <None Remove="img\Wybieranie\wyborZolty1.png" />
     <None Remove="img\Wybieranie\wyborZolty2.png" />
     <None Remove="img\xxx.png" />
@@ -251,16 +245,10 @@
     <Resource Include="img\serC.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Wybieranie\wyborBrazowy.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="img\Wybieranie\wyborBrazowy1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborBrazowy2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="img\Wybieranie\wyborCzarny.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborCzarny1.png">
@@ -269,16 +257,10 @@
     <Resource Include="img\Wybieranie\wyborCzarny2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Wybieranie\wyborCzerwony.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="img\Wybieranie\wyborCzerwony1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborCzerwony2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="img\Wybieranie\wyborNiebieski.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborNiebieski1.png">
@@ -287,16 +269,10 @@
     <Resource Include="img\Wybieranie\wyborNiebieski2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="img\Wybieranie\wyborZielony.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="img\Wybieranie\wyborZielony1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborZielony2.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="img\Wybieranie\wyborZolty.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\Wybieranie\wyborZolty1.png">
