@@ -119,11 +119,11 @@ namespace monkeyTowerDefenceTD7
                 case 1: // Niebieski
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Niebieski/dzida.png"));
                     RechargeTimer.Interval = TimeSpan.FromSeconds(1);
-                    Range = 100;
+                    Range = 150;
                     LifetimeLimit = 0.01;
                     Size = 100;
                     StartingDistance = 50;
-                    Dmg = 10;
+                    Dmg = 15;
                     break;
                 case 2: // Brązowy (wybuchająca)
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"));
@@ -145,7 +145,7 @@ namespace monkeyTowerDefenceTD7
                     break;
                 case 4: // Źółty
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zolty/petarda.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds(2);
+                    RechargeTimer.Interval = TimeSpan.FromSeconds(3);
                     Range = 200;
                     LifetimeLimit = 5;
                     Size = 30;
@@ -155,11 +155,11 @@ namespace monkeyTowerDefenceTD7
                     break;
                 case 5: // Zielony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Zielony/dmuh.png"));
-                    RechargeTimer.Interval = TimeSpan.FromSeconds((double)1.5);
-                    Range = 500;
+                    RechargeTimer.Interval = TimeSpan.FromSeconds((double)0.5);
+                    Range = 750;
                     LifetimeLimit = 5;
                     Size = 15;
-                    Dmg = 10;
+                    Dmg = 4;
                     Bulletimage.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Bullets/pociskZielony.png"));
                     break;
                 default: // Default (testowanie)

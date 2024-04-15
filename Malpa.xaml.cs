@@ -112,43 +112,39 @@ namespace monkeyTowerDefenceTD7
         }
         public void RuchMalpy()
         {
-            if (Pozycja < MainWindow.Punkty.Count)
+            if (Pozycja < MainWindow.Punkty.Count) // Sprawdza czy punkt, do którego idzie małpka istnieje.
             {
                 if (!(MainWindow.Punkty[Pozycja].X == Canvas.GetLeft(this) + ActualWidth / 2 &&
-                    MainWindow.Punkty[Pozycja].Y == Canvas.GetTop(this) + ActualWidth / 2))
+                    MainWindow.Punkty[Pozycja].Y == Canvas.GetTop(this) + ActualWidth / 2)) // Sprawdza czy małpka jest dokładnie w punkcie docelowym.
                 {
-                    // na 100% mój kod, nie ukradnięty z Pociski.cs
-
-                    double x1 = Canvas.GetLeft(this) + ActualWidth / 2;
+                    double x1 = Canvas.GetLeft(this) + ActualWidth / 2; // Jeśli nie:
                     double y1 = Canvas.GetTop(this) + ActualHeight / 2;
                     double x2 = MainWindow.Punkty[Pozycja].X;
                     double y2 = MainWindow.Punkty[Pozycja].Y;
                     double Angle = Math.Atan2(y2 - y1, x2 - x1);
 
-                    // change in movement
                     double xMovement = Math.Cos(Angle) * Predkosc;
                     double yMovement = Math.Sin(Angle) * Predkosc;
 
                     double Distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
 
-                    // setting position
-                    if (Distance > Predkosc)
+                    if (Distance < Predkosc) // Sprawdza czy dystans jest mniejszy od prędkości małpki:
                     {
-                        Canvas.SetLeft(this, Canvas.GetLeft(this) + xMovement);
-                        Canvas.SetTop(this, Canvas.GetTop(this) + yMovement);
+                        Canvas.SetLeft(this, MainWindow.Punkty[Pozycja].X - ActualWidth / 2); // Jeśli tak, przenosi małpke do punktu docelowego.
+                        Canvas.SetTop(this, MainWindow.Punkty[Pozycja].Y - ActualWidth / 2);
                     }
                     else
                     {
-                        Canvas.SetLeft(this, MainWindow.Punkty[Pozycja].X - ActualWidth / 2);
-                        Canvas.SetTop(this, MainWindow.Punkty[Pozycja].Y - ActualWidth / 2);
+                        Canvas.SetLeft(this, Canvas.GetLeft(this) + xMovement); // Jeśli nie, małpka idzie w jego kierunku.
+                        Canvas.SetTop(this, Canvas.GetTop(this) + yMovement);
                     }
                 }
-                else
+                else // Jeśli małpka jest w punkcie docelowym, wybiera następny punkt ścieżki jako cel.
                 {
                     Pozycja++;
                 }
             }
-            else
+            else // Jeśli punkty się skończyły, odejmij życie i zaktualizuj wartości.
             {
                 MainWindow.Zycie -= Obrazenia;
                 MainWindow.AktualizujWarotsci();
