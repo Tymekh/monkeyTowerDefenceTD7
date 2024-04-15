@@ -43,35 +43,35 @@ namespace monkeyTowerDefenceTD7
         {
             switch (idMalpy)
             {
-                case 0:
+                case 0: // Małpa zwykła
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa.png"));
                     Wartosc = 10;
                     Predkosc = 5;
                     Zycie = 10;
 
                     break;
-                case 1:
+                case 1: // Małpa albinos
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Albinos.png"));
                     Wartosc = 10;
                     Predkosc = 5;
                     Zycie = 30;
 
                     break;
-                case 2:
+                case 2: // Małpa czarna
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Czarnuch.png"));
                     Wartosc = 1;
                     Predkosc = 8;
                     Zycie = 5;
 
                     break;
-                case 3:
+                case 3: // Małpa matka
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Matka.png"));
                     Wartosc = 20;
                     Predkosc = 2;
                     Zycie = 50;
 
                     break;
-                case 4:
+                case 7: // Małpa dziecko
                     Obrazek.Width = 50;
                     Obrazek.Height = 50;
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
@@ -80,21 +80,21 @@ namespace monkeyTowerDefenceTD7
                     Zycie = 1;
 
                     break;
-                case 5:
+                case 4: // Małpa z hełmem
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Helm.png"));
                     Wartosc = 15;
                     Predkosc = 3;
                     Zycie = 80;
 
                     break;
-                case 6:
+                case 5: // Małpa w zbroi
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Zbroja.png"));
                     Wartosc = 20;
                     Predkosc = 2;
                     Zycie = 120;
 
                     break;
-                case 7:
+                case 6: // Mutanty z losowom teksturą i statystykami
                     Obrazek.Source = new BitmapImage(new Uri($@"pack://application:,,/img/Maupy/Mutanty/Maupa_Mutant0{new Random().Next(1, 9)}.png"));
                     Wartosc = new Random().Next(1, 41);   
                     Predkosc = new Random().Next(1, 8);
