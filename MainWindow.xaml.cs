@@ -27,9 +27,10 @@ namespace monkeyTowerDefenceTD7
         public static int Pieniadze = 100;
         public static int Zycie = 100;
         public static int Dlug = 1000;
+        private static int NumerFali = 0;
         public static int WybranyBalon;
         public static bool WyborAktywny = false;
-        private static int NumerFali = 0;
+        List<int> WartosciBalonow = new List<int>() { 100, 150, 250, 0, 200, 150 };
 
         public MainWindow()
         {
@@ -51,7 +52,6 @@ namespace monkeyTowerDefenceTD7
             TimerMiedzySpawnami.Tick += TimerMiedzySpawnami_Tick;
 
             TimerPoczatkowy.Start();
-
 
             // \/\/\/ ODKOMENTOWAĆ NA KOŃCU!!!!! \/\/\/
             //WindowState = WindowState.Maximized;
@@ -76,7 +76,9 @@ namespace monkeyTowerDefenceTD7
             {
                 Point position = e.GetPosition(MyGame);
                 Balony.CreateBalon(WybranyBalon, position);
+                Pieniadze -= WartosciBalonow[WybranyBalon];
                 WyborAktywny = false;
+                AktualizujWarotsci();
             }
         }
 
@@ -179,8 +181,15 @@ namespace monkeyTowerDefenceTD7
         {
             var button = sender as Button;
             var Numer = button.FontSize;
-            WybranyBalon = (int)Numer - 1;
-            WyborAktywny = true;
+            if((Pieniadze >= WartosciBalonow[(int)Numer - 1]) || (WartosciBalonow[(int)Numer - 1] == 0))
+            {
+                WybranyBalon = (int)Numer - 1;
+                WyborAktywny = true;
+            }
+            else
+            {
+                MessageBox.Show("za malo pieniedzy");
+            }
             Log.Tekst += "wybrano balon: " + WybranyBalon.ToString() + "\n";
         }
 
