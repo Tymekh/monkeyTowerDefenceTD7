@@ -30,6 +30,8 @@ namespace monkeyTowerDefenceTD7
         public static bool WyborAktywny = false;
         List<int> WartosciBalonow = new List<int>() { 100, 150, 250, 0, 200, 150 };
         private static bool CzyKoniec = false;
+        private static Random random = new();
+
 
         public MainWindow()
         {
@@ -83,7 +85,7 @@ namespace monkeyTowerDefenceTD7
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            NastepnaFala();
+            //NastepnaFala();
             //SpawnMalpka(new Random().Next(0, 8));
             //SpawnMalpka(6);
             ;
@@ -103,8 +105,6 @@ namespace monkeyTowerDefenceTD7
 
         private void SpawnZaleznieOdTrudnosci()
         {
-            Random random = new();
-
             if (NumerFali >= 12)   // Szansa na pojawienie mutantów od fali 12
             {
                 SpawnMalpka(random.Next(0, 7));
@@ -161,7 +161,7 @@ namespace monkeyTowerDefenceTD7
         public static void AktualizujWarotsci()
         {
             TextPieniadze.Text = Pieniadze.ToString();
-            TextZycie.Text = Zycie.ToString();
+            TextZycie.Text = Zycie >= 0 ? Zycie.ToString() : "0";
             TextDlug.Text = $"{Dlug}";
             TextFala.Text = $"Fala: {NumerFali}";
 
@@ -210,8 +210,8 @@ namespace monkeyTowerDefenceTD7
 
         void NastepnaFala()
         {
-            DlugoscFali = new Random().Next(10, 15);
-            if (NumerFali >= 25)
+            DlugoscFali = random.Next(10, 16);
+            if (++NumerFali >= 25)
             {
                 if (TimerMiedzySpawnami.Interval == TimeSpan.FromSeconds(1)) TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(0.5);
                 DlugoscFali *= 2;
@@ -219,9 +219,7 @@ namespace monkeyTowerDefenceTD7
             TimerMiedzyFalami.Stop();
             TimerMiedzySpawnami.Start();
             Dlug = (int)(Dlug * 1.05);
-            NumerFali++;
             AktualizujWarotsci();
-
         }
 
         private void TimerMiedzyFalami_Tick(object? sender, EventArgs e)
@@ -250,6 +248,12 @@ namespace monkeyTowerDefenceTD7
                 Dlug -= Dlug < 100 ? Dlug : 100;
                 AktualizujWarotsci();
             }
+            else
+            {
+                Pieniadze = 0;
+                Dlug -= Dlug < 100 ? Dlug : 100;
+                AktualizujWarotsci();
+            }
             if (Dlug <= 0)
             {
                 KoniecGry(true);
@@ -260,6 +264,7 @@ namespace monkeyTowerDefenceTD7
         {
             if (!CzyKoniec)
             {
+                CzyKoniec = true;
                 if (CzyWygrana)
                 {
                     MessageBox.Show($"Gratulację, Udało ci się spłacic twój dług na fali {NumerFali}!!!");
@@ -270,7 +275,6 @@ namespace monkeyTowerDefenceTD7
                     MessageBox.Show($"Przegrałeś/aś na fali {NumerFali}!!!");
                     Application.Current.Shutdown();
                 }
-                CzyKoniec = true;
             }
         }
     }

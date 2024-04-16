@@ -31,6 +31,8 @@ namespace monkeyTowerDefenceTD7
         private int idMalpy = 0;
 
         public bool CzyZyje = true;
+
+        private static Random random = new();
         public Malpa(int id)
         {
             InitializeComponent();
@@ -92,11 +94,11 @@ namespace monkeyTowerDefenceTD7
 
                     break;
                 case 6: // Mutanty z losowom teksturą i statystykami
-                    Obrazek.Source = new BitmapImage(new Uri($@"pack://application:,,/img/Maupy/Mutanty/Maupa_Mutant0{new Random().Next(1, 9)}.png"));
-                    Wartosc = new Random().Next(1, 41);   
-                    Predkosc = new Random().Next(1, 9);
-                    Zycie = new Random().Next(1, 151);
-                    Obrazenia = new Random().Next(1, 16);
+                    Obrazek.Source = new BitmapImage(new Uri($@"pack://application:,,/img/Maupy/Mutanty/Maupa_Mutant0{random.Next(1, 9)}.png"));
+                    Wartosc = random.Next(1, 41);   
+                    Predkosc = random.Next(1, 9);
+                    Zycie = random.Next(1, 151);
+                    Obrazenia = random.Next(1, 16);
 
                     break;
                 case 7: // Małpa dziecko
@@ -104,7 +106,7 @@ namespace monkeyTowerDefenceTD7
                     Obrazek.Height = 50;
                     Obrazek.Source = new BitmapImage(new Uri(@"pack://application:,,/img/Maupy/Maupa_Dziecko.png"));
                     Wartosc = 5;
-                    Predkosc = new Random().Next(9, 13);
+                    Predkosc = random.Next(9, 13);
                     Zycie = 1;
 
                     break;
@@ -193,13 +195,13 @@ namespace monkeyTowerDefenceTD7
                 Height = 50,
                 Fill = new ImageBrush()
                 {
-                    ImageSource = new BitmapImage(new Uri($@"pack://application:,,/img/Gore/Gore{new Random().Next(1, 17)}.png"))
+                    ImageSource = new BitmapImage(new Uri($@"pack://application:,,/img/Gore/Gore{random.Next(1, 17)}.png"))
                 }
             };
 
             if (idMalpy == 4)
             {
-                for (int i = new Random().Next(0, 5); i < 5; i++)
+                for (int i = random.Next(0, 5); i < 5; i++)
                 {
                     Malpa malpa = new(7)
                     {
@@ -213,13 +215,13 @@ namespace monkeyTowerDefenceTD7
                 }
             }
 
-            RotateTransform rotation = new RotateTransform(new Random().Next(0, 360) * 180 / Math.PI);
+            RotateTransform rotation = new RotateTransform(random.Next(0, 360) * 180 / Math.PI);
             Gore.RenderTransformOrigin = new Point(0.5, 0.5);
             Gore.RenderTransform = rotation;
 
             Panel.SetZIndex(Gore, 1);
-            Canvas.SetTop(Gore, Canvas.GetTop(this) + ActualWidth / 4 + new Random().Next(-20, 20));
-            Canvas.SetLeft(Gore, Canvas.GetLeft(this) + ActualWidth / 4 + new Random().Next(-20, 20));
+            Canvas.SetTop(Gore, Canvas.GetTop(this) + ActualWidth / 4 + random.Next(-20, 20));
+            Canvas.SetLeft(Gore, Canvas.GetLeft(this) + ActualWidth / 4 + random.Next(-20, 20));
             MainWindow.MyGame.Children.Add(Gore);
             MainWindow.MyGame.Children.Remove(this);
 
