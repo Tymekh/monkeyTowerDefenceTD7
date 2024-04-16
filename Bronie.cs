@@ -26,13 +26,13 @@ namespace monkeyTowerDefenceTD7
         bool Recharged = true;
         int id;
         int Range;
-        double LifetimeLimit = 10; // Default Lifetime (in seconds)
-        double Size = 10; // Default size
-        int StartingDistance = 0; // How far should bullet spawn
-        int Dmg;
+        double LifetimeLimit = 10; // domyślna długość pocisku
+        double Size = 10; // domyślny rozmiar
+        int StartingDistance = 0; // jak oddalony powinien byc pocisk od punktu startowego
+        int Dmg = 0; // domyślny dmg
         bool isExplosive = false;
         bool isZolty = false;
-        ImageBrush Bulletimage = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"))};
+        ImageBrush Bulletimage = new ImageBrush { ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/invisible.png"))}; // domyślny wygląd pocisku
         Rectangle Ballon;
 
 
@@ -63,34 +63,34 @@ namespace monkeyTowerDefenceTD7
 
         private void RotateTimer_Tick(object? sender, EventArgs e)
         {
-            Malpa Target = null;
+            Malpa Target = null; // resetujemy wartośći dla każdej iteracji
             Nullable<double> LowestDistance = null;
             if (bron != null && MainWindow.MyGame.Children.OfType<Malpa> != null)
             {
-                foreach (Malpa malpa in MainWindow.MyGame.Children.OfType<Malpa>())
+                foreach (Malpa malpa in MainWindow.MyGame.Children.OfType<Malpa>()) // sprawdzamy dystans dla każdej małpy na ekranie
                 {
                     double Distance = CalculateDistance(bron, malpa);
                     if ((Distance < LowestDistance) || (LowestDistance == null))
                     {
-                        Target = malpa; // Save monkey with lowest distance to balloon
-                        LowestDistance = Distance; // Save value of lowest distance
+                        Target = malpa; // zapisz małpe z najmiejszym dystansem do balona
+                        LowestDistance = Distance; // zapisz wartość najmiejszy dystans
                     }
                 }
-                if((LowestDistance <= Range) && Target != null) // Check if Target is in range
+                if((LowestDistance <= Range) && Target != null) // Sprawdz czy cel jest w zasięgu małpki
                 {
                     double Angle = CalculateAngle(Target, bron);
                     RotateTransform rotation = new RotateTransform(Angle * 180 / Math.PI);
                     bron.RenderTransformOrigin = new Point(0.5, 0.5);
-                    bron.RenderTransform = rotation;
+                    bron.RenderTransform = rotation; // obrót pocisku w strone celu
                     if (Recharged)
                     {
-                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, Bulletimage, StartingDistance);
+                        Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, Bulletimage, StartingDistance); // Strzał
                         if(isExplosive)
                         {
                             MainWindow.MyGame.Children.Remove(Ballon);
                             MainWindow.MyGame.Children.Remove(bron);
                         }
-                        if (RechargeTimer.IsEnabled == false) // Check if timer is disabled to avoid starting it multiple times
+                        if (RechargeTimer.IsEnabled == false) // Zobacz czy timer jest włączony
                         {
                             Recharged = false;
                             RechargeTimer.Start();
@@ -100,12 +100,12 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        public void StworzBron(Rectangle Balon, int idBroni, Point BalonPosition)
+        public void StworzBron(Rectangle Balon, int idBroni, Point BalonPosition) // tworzy balon
         {
             Ballon = Balon;
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (id) // id jest domyślnie a do testowania wstawić np. 10
+            switch (id) // po id switch wie jaki balon stworzyć
             {
                 case 0: // Czerwony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));
@@ -183,7 +183,7 @@ namespace monkeyTowerDefenceTD7
 
             Canvas.SetLeft(Bron, BronX);
             Canvas.SetTop(Bron, BronY);
-            MainWindow.MyGame.Children.Add(Bron);
+            MainWindow.MyGame.Children.Add(Bron); // dodaje bron do canvasa
             bron = Bron;
         }
 
@@ -194,7 +194,7 @@ namespace monkeyTowerDefenceTD7
             double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;
             double y2 = Canvas.GetTop(point2) + point2.ActualHeight / 2;
 
-            double angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
+            double angle = Math.Atan2((y2 - y1), (x2 - x1)); // oblicza kąt pomiędzy 2 elementami na canvasie
             return angle;
         }
         public double CalculateDistance(FrameworkElement point1, FrameworkElement point2)
@@ -204,7 +204,7 @@ namespace monkeyTowerDefenceTD7
             double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;
             double y2 = Canvas.GetTop(point2) + point2.ActualHeight / 2;
 
-            double Distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)); //calculating distance betwen 2 points
+            double Distance = Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2)); // oblicza dystans pomiędzy 2 elementami
             return Distance; 
         }
     }
