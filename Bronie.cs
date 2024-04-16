@@ -100,12 +100,12 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        public void StworzBron(Rectangle Balon, int idBroni, Point BalonPosition) // tworzy balon
+        public void StworzBron(Rectangle Balon, int idBroni, Point BalonPosition) // tworzy bron
         {
             Ballon = Balon;
             id = idBroni;
             ImageBrush image = new ImageBrush { };
-            switch (id) // po id switch wie jaki balon stworzyć
+            switch (id) // po id switch wie jaki bron stworzyć
             {
                 case 0: // Czerwony
                     image.ImageSource = new BitmapImage(new Uri(@"pack://application:,,/img/Balony/Czerwony/luke.png"));

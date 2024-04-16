@@ -25,7 +25,7 @@ namespace monkeyTowerDefenceTD7
         private static DispatcherTimer BulletTimer = new DispatcherTimer();
         private static List<Bullets> BulletList = new List<Bullets>();
         private static Canvas canvas;
-        public class Bullets // lista właściwości
+        public class Bullets // lista właściwości 
         {
             public Rectangle Bullet {  get; set; }
             public Malpa Malpa { get; set; }
