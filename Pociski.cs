@@ -25,7 +25,7 @@ namespace monkeyTowerDefenceTD7
         private static DispatcherTimer BulletTimer = new DispatcherTimer();
         private static List<Bullets> BulletList = new List<Bullets>();
         private static Canvas canvas;
-        public class Bullets // lista właściwości 
+        public class Bullets // lista właściwości pocisków
         {
             public Rectangle Bullet {  get; set; }
             public Malpa Malpa { get; set; }
@@ -35,30 +35,27 @@ namespace monkeyTowerDefenceTD7
             public bool isExplosive { get; set; }
             public bool isZolty { get; set; }
         }
-        private static void BulletTimer_Tick(object? sender, EventArgs e)
+        private static void BulletTimer_Tick(object? sender, EventArgs e) // timer dla pocisków
         { 
             List<Malpa> DoZabicia = new();
-            for(int i = 0; i < BulletList.Count; i++)
+            for(int i = 0; i < BulletList.Count; i++) // pętla dla wszyskich pocisków
             {
                 Rectangle Bullet = BulletList[i].Bullet;
                 Malpa Target = BulletList[i].Malpa;
                 BulletList[i].Lifetime += (double)1 / 60;
                 int Damage = BulletList[i].Dmg;
 
-                if (Target != null)
+                if (Target != null) // sprawdza czy pocisk ma cel
                 {
                     double Angle = CalculateAngle(Bullet, Target);
                     double ReverseAngle = CalculateAngle(Target, Bullet);
 
                     RotateTransform rotation = new RotateTransform(ReverseAngle * 180 / Math.PI);
                     Bullet.RenderTransformOrigin = new Point(0.5, 0.5);
-                    Bullet.RenderTransform = rotation;
+                    Bullet.RenderTransform = rotation; // obracanie się pocisku
 
-                    //Log.Tekst += Angle.ToString() + "\n";
+                    double BulletSpeed = 10; // szybkość pocisku
 
-                    double BulletSpeed = 10;
-
-                    // change in movement
                     double xMovement = Math.Cos(Angle) * BulletSpeed;
                     double yMovement = Math.Sin(Angle) * BulletSpeed;
 
@@ -66,9 +63,9 @@ namespace monkeyTowerDefenceTD7
                     Canvas.SetTop(Bullet, Canvas.GetTop(Bullet) + yMovement);
                 }
 
-                if(CheckColision(Bullet, Target))
+                if(CheckColision(Bullet, Target)) // wykonuje się jeśli pocisk dotyka celu
                 {
-                    if (BulletList[i].isZolty)
+                    if (BulletList[i].isZolty) // sprawdza czy pocisk został stworzony przez zółty balon
                     {
                         double x = Canvas.GetLeft(Bullet) + Bullet.ActualWidth / 2;
                         double y = Canvas.GetTop(Bullet) + Bullet.ActualHeight / 2;
@@ -79,14 +76,13 @@ namespace monkeyTowerDefenceTD7
                         DeleteBullet(i);
                         continue;
                     }
-                    if (BulletList[i].isExplosive)
+                    if (BulletList[i].isExplosive) // sprawdza czy pocisk jest wybuchowy
                     {
                         for (int j = 0; j < MainWindow.MyGame.Children.OfType<Malpa>().Count(); j++)
                         {
                             Malpa malpa = MainWindow.MyGame.Children.OfType<Malpa>().ElementAt(j);
                             if(CheckColision(Bullet, malpa))
                             {
-                                //if (malpa.CzyZyje) malpa.ZadajObrazenia(Damage);
                                 if (Damage < malpa.Zycie) malpa.ZadajObrazenia(Damage);
                                 else DoZabicia.Add(malpa);
                                 Log.Tekst += "trafiono \n";
@@ -101,18 +97,18 @@ namespace monkeyTowerDefenceTD7
                     }
                     //MessageBox.Show("Trafiono");
                     DeleteBullet(i);
-                    if (Target.CzyZyje) Target.ZadajObrazenia(Damage);
+                    if (Target.CzyZyje) Target.ZadajObrazenia(Damage); // jeśli cel żyje zadaje obrażenia balonowi
                     continue;
                 }
 
-                if (BulletList[i].Lifetime > BulletList[i].LifetimeLimit) // Check if bullet is older than specified time
+                if (BulletList[i].Lifetime > BulletList[i].LifetimeLimit) // Jeśli pocisk żyje dłużej niż określony czas usuwa pocisk
                 {
                     DeleteBullet(i);
                 }
             }
         }
 
-        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size,int Damage,bool isExposive, bool isZolty, ImageBrush image, int StartingDistance = 0)
+        public static void Shot(Malpa Target, Point StartPoint,double LifetimeLimit, double Size,int Damage,bool isExposive, bool isZolty, ImageBrush image, int StartingDistance = 0) // "strzela" - towrzy pocisk i dodaje go do listy
         {
             Rectangle bullet = new Rectangle
             {
@@ -123,7 +119,7 @@ namespace monkeyTowerDefenceTD7
             //BulletList.Add(bullet);
             //TargetList.Add(target);
             Panel.SetZIndex(bullet, 2);
-            BulletList.Add(new Bullets
+            BulletList.Add(new Bullets // dodaje do listy właściwośći pocisku
             {
                 Bullet = bullet,
                 Malpa = Target,
@@ -147,7 +143,7 @@ namespace monkeyTowerDefenceTD7
 
             MainWindow.MyGame.Children.Add(bullet);
 
-            if(BulletTimer.IsEnabled == false) // Check if timer is running and starts it once
+            if(BulletTimer.IsEnabled == false) // sprawdza czy timer jest włączony żeby uniknąć włączania go kilka razy
             {
                 canvas = MainWindow.MyGame;
                 BulletTimer = new DispatcherTimer();
@@ -157,25 +153,20 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        private static void DeleteBullet(int id)
+        private static void DeleteBullet(int id) // usuwa pocisk
         {
             canvas.Children.Remove(BulletList[id].Bullet);
             BulletList.RemoveAt(id);
         }
 
-        private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2)
+        private static bool CheckColision(FrameworkElement point1,  FrameworkElement point2) // sprawdza czy 2 elementy się zderzają
         {
             if (point1 == null || point2 == null) { return false; }
-
-            int Smaller = 1; // Says how much smaler is the hitbox acording to the bullet sice (eg. 2 is 2 times smaller)
-
-            //var x1 = Canvas.GetLeft(point1) + (point1.ActualWidth / (Smaller * 2));
-            //var y1 = Canvas.GetTop(point1) + (point1.ActualHeight / (Smaller * 2));
 
             var x1 = Canvas.GetLeft(point1);
             var y1 = Canvas.GetTop(point1);
 
-            Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth / Smaller, point1.ActualHeight / Smaller);
+            Rect HitBox1 = new Rect(x1, y1, point1.ActualWidth, point1.ActualHeight);
 
             var x2 = Canvas.GetLeft(point2);
             var y2 = Canvas.GetTop(point2);
@@ -191,7 +182,7 @@ namespace monkeyTowerDefenceTD7
             }
         }
 
-        private static double CalculateAngle(FrameworkElement point1, FrameworkElement point2)
+        private static double CalculateAngle(FrameworkElement point1, FrameworkElement point2) // oblicza kąt pomiędzy elementami
         {
             if (point1 == null || point2 == null) { return 0; }
 
@@ -200,7 +191,7 @@ namespace monkeyTowerDefenceTD7
             double x2 = Canvas.GetLeft(point2) + point2.ActualWidth / 2;
             double y2 = Canvas.GetTop(point2) + point2.ActualHeight / 2;
 
-            double angle = Math.Atan2((y2 - y1), (x2 - x1)); //calculate angle in radians
+            double angle = Math.Atan2((y2 - y1), (x2 - x1));
             return angle;
         }
     }

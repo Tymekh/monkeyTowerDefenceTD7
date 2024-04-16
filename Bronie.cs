@@ -81,7 +81,7 @@ namespace monkeyTowerDefenceTD7
                     double Angle = CalculateAngle(Target, bron);
                     RotateTransform rotation = new RotateTransform(Angle * 180 / Math.PI);
                     bron.RenderTransformOrigin = new Point(0.5, 0.5);
-                    bron.RenderTransform = rotation; // obrót pocisku w strone celu
+                    bron.RenderTransform = rotation; // obrót broni w strone celu
                     if (Recharged)
                     {
                         Pociski.Shot(Target, BronPosition, LifetimeLimit, Size, Dmg, isExplosive, isZolty, Bulletimage, StartingDistance); // Strzał
