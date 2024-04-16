@@ -17,20 +17,19 @@ namespace monkeyTowerDefenceTD7
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Zmienić \/\/\/
-        static readonly int DlugPoczatkowy = 10000;
-
         public static Canvas MyGame;
         public static TextBlock TextPieniadze;
         public static TextBlock TextZycie;
         public static TextBlock TextDlug;
-        public static int Pieniadze = 150;
+        public static TextBlock TextFala;
+        public static int Pieniadze = 100;
         public static int Zycie = 100;
-        public static int Dlug = 10000;
+        public static int Dlug = 1000;
         private static int NumerFali = 0;
         public static int WybranyBalon;
         public static bool WyborAktywny = false;
         List<int> WartosciBalonow = new List<int>() { 100, 150, 250, 0, 200, 150 };
+        private static bool CzyKoniec = false;
 
         public MainWindow()
         {
@@ -41,10 +40,11 @@ namespace monkeyTowerDefenceTD7
             TextPieniadze = PieniadzeText;
             TextZycie = ZycieText;
             TextDlug = DlugText;
+            TextFala = FalaText;
 
-            TimerPoczatkowy.Interval = TimeSpan.FromSeconds(20);
-            TimerMiedzyFalami.Interval = TimeSpan.FromSeconds(20);
-            TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(2);
+            TimerPoczatkowy.Interval = TimeSpan.FromSeconds(10);
+            TimerMiedzyFalami.Interval = TimeSpan.FromSeconds(10);
+            TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(1);
 
             TimerPoczatkowy.Tick += TimerPoczatkowy_Tick;
             TimerMiedzyFalami.Tick += TimerMiedzyFalami_Tick;
@@ -83,8 +83,10 @@ namespace monkeyTowerDefenceTD7
 
         private void RightClick(object sender, MouseButtonEventArgs e)
         {
-            SpawnMalpka(new Random().Next(0, 8));
+            NastepnaFala();
+            //SpawnMalpka(new Random().Next(0, 8));
             //SpawnMalpka(6);
+            ;
         }
 
         void SpawnMalpka(int id)
@@ -103,27 +105,27 @@ namespace monkeyTowerDefenceTD7
         {
             Random random = new();
 
-            if (NumerFali >= 18)   // Szansa na pojawienie mutantów od fali 18
+            if (NumerFali >= 12)   // Szansa na pojawienie mutantów od fali 12
             {
                 SpawnMalpka(random.Next(0, 7));
             }
-            else if (NumerFali >= 15)   // Szansa na pojawienie małp w zbroi od fali 15
+            else if (NumerFali >= 10)   // Szansa na pojawienie małp w zbroi od fali 10
             {
                 SpawnMalpka(random.Next(0, 6));
             }
-            else if (NumerFali >= 12)   // Szansa na pojawienie małp matek od fali 12
+            else if (NumerFali >= 8)   // Szansa na pojawienie małp matek od fali 8
             {
                 SpawnMalpka(random.Next(0, 5));
             }
-            else if (NumerFali >= 9)   // Szansa na pojawienie małp z hełmem od fali 9
+            else if (NumerFali >= 6)   // Szansa na pojawienie małp z hełmem od fali 6
             {
                 SpawnMalpka(random.Next(0, 4));
             }
-            else if (NumerFali >= 6)   // Szansa na pojawienie czarnych malp od fali 6
+            else if (NumerFali >= 4)   // Szansa na pojawienie czarnych malp od fali 4
             {
                 SpawnMalpka(random.Next(0, 3));
             }
-            else if (NumerFali >= 3)   // Szansa na pojawienie małp albinosów od fali 3
+            else if (NumerFali >= 2)   // Szansa na pojawienie małp albinosów od fali 2
             {
                 SpawnMalpka(random.Next(0, 2));
             }
@@ -160,7 +162,8 @@ namespace monkeyTowerDefenceTD7
         {
             TextPieniadze.Text = Pieniadze.ToString();
             TextZycie.Text = Zycie.ToString();
-            TextDlug.Text = $"{DlugPoczatkowy - Dlug}/{DlugPoczatkowy}";
+            TextDlug.Text = $"{Dlug}";
+            TextFala.Text = $"Fala: {NumerFali}";
 
             if (Zycie <= 0) KoniecGry(false);
         }
@@ -169,8 +172,7 @@ namespace monkeyTowerDefenceTD7
         {
             if (MessageBox.Show("Czy na pewno chcesz wyjść z gry?", 
                 "Potwierdź wyjście z gry.",
-                MessageBoxButton.YesNo,
-                MessageBoxImage.None) == MessageBoxResult.Yes) Application.Current.Shutdown();
+                MessageBoxButton.YesNo) == MessageBoxResult.Yes) Application.Current.Shutdown();
         }
 
         private void Button_Click2(object sender, RoutedEventArgs e)
@@ -206,12 +208,25 @@ namespace monkeyTowerDefenceTD7
             TimerMiedzyFalami.Start();
         }
 
+        void NastepnaFala()
+        {
+            DlugoscFali = new Random().Next(10, 15);
+            if (NumerFali >= 25)
+            {
+                if (TimerMiedzySpawnami.Interval == TimeSpan.FromSeconds(1)) TimerMiedzySpawnami.Interval = TimeSpan.FromSeconds(0.5);
+                DlugoscFali *= 2;
+            }
+            TimerMiedzyFalami.Stop();
+            TimerMiedzySpawnami.Start();
+            Dlug = (int)(Dlug * 1.05);
+            NumerFali++;
+            AktualizujWarotsci();
+
+        }
 
         private void TimerMiedzyFalami_Tick(object? sender, EventArgs e)
         {
-            DlugoscFali = new Random().Next(10, 15);
-            TimerMiedzyFalami.Stop();
-            TimerMiedzySpawnami.Start();
+            NastepnaFala();
         }
         private void TimerMiedzySpawnami_Tick(object? sender, EventArgs e)
         {
@@ -224,7 +239,6 @@ namespace monkeyTowerDefenceTD7
             {
                 TimerMiedzySpawnami.Stop();
                 TimerMiedzyFalami.Start();
-                NumerFali++;
             }
         }
 
@@ -233,7 +247,7 @@ namespace monkeyTowerDefenceTD7
             if (Pieniadze >= 100)
             {
                 Pieniadze -= 100;
-                Dlug -= 100;
+                Dlug -= Dlug < 100 ? Dlug : 100;
                 AktualizujWarotsci();
             }
             if (Dlug <= 0)
@@ -244,15 +258,19 @@ namespace monkeyTowerDefenceTD7
 
         private static void KoniecGry(bool CzyWygrana)
         {
-            if (CzyWygrana)
+            if (!CzyKoniec)
             {
-                MessageBox.Show("Gratulację, Wygrałeś/aś!!!");
-                Application.Current.Shutdown();
-            }
-            else
-            {
-                MessageBox.Show("Przegrałeś/aś!!!");
-                Application.Current.Shutdown();
+                if (CzyWygrana)
+                {
+                    MessageBox.Show($"Gratulację, Udało ci się spłacic twój dług na fali {NumerFali}!!!");
+                    Application.Current.Shutdown();
+                }
+                else
+                {
+                    MessageBox.Show($"Przegrałeś/aś na fali {NumerFali}!!!");
+                    Application.Current.Shutdown();
+                }
+                CzyKoniec = true;
             }
         }
     }

@@ -5,10 +5,5 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:monkeyTowerDefenceTD7"
              mc:Ignorable="d">
-    <!--<Rectangle>
-        <Rectangle.Fill>
-            <ImageBrush ImageSource="/img/Maupy/Maupa.png"></ImageBrush>
-        </Rectangle.Fill>
-    </Rectangle>-->
     <Image x:Name="Obrazek" Source="/img/Maupy/Maupa.png" />
 </UserControl>

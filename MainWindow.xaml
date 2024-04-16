@@ -16,7 +16,6 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/img/ElementyUi/SciezkaZdrowia.png" />
             </Canvas.Background>
-            <TextBlock Width="200" Height="20" x:Name="tekst"></TextBlock>
             <Polyline Points="-50 900, 648 900, 648 180, 170 180, 170 660, 1127 660, 1127 180, 890 180, 890 900, 1367 900, 1367 180, 1586 180" Stroke="Transparent" x:Name="Sciezka" Stretch="Fill"/>
         </Canvas>
         <Grid Grid.Column="1" Panel.ZIndex="30">
@@ -144,8 +143,9 @@
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                     <Image Source="/img/ElementyUi/GAC.png" Width="50" Margin="20"/>
-                    <TextBlock Margin="0 20 20 20" x:Name="PieniadzeText" Grid.Row="2" FontSize="50" Foreground="White" FontWeight="Bold">100</TextBlock>
+                    <TextBlock Margin="0 30 20 30" x:Name="PieniadzeText" Grid.Row="2" FontSize="40" Foreground="White" FontWeight="Bold">100</TextBlock>
                 </StackPanel>
+                    <TextBlock Margin="0 30 25 30" x:Name="FalaText" Grid.Row="2" FontSize="40" Foreground="White" FontWeight="Bold" HorizontalAlignment="Right">Fala: 0</TextBlock>
             </Grid>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
